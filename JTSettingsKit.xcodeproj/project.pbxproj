@@ -1,0 +1,548 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		A9F13E0019597F360002272B /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A9F13E0119597F370002272B /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				A9F13E0619597F4A0002272B /* Build Framework */,
+			);
+			dependencies = (
+				A9F13E0519597F400002272B /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		A9F13DA819597A830002272B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DA719597A830002272B /* Foundation.framework */; };
+		A9F13DB719597A830002272B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DA719597A830002272B /* Foundation.framework */; };
+		A9F13DBC19597A830002272B /* libJTSettingsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DA419597A830002272B /* libJTSettingsKit.a */; };
+		A9F13DDE19597AE60002272B /* JTSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F13DCE19597AE60002272B /* JTSettingsCell.m */; };
+		A9F13DE119597AE60002272B /* JTSettingsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F13DD319597AE60002272B /* JTSettingsGroup.m */; };
+		A9F13DE219597AE60002272B /* JTSettingsGroupSettingDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F13DD519597AE60002272B /* JTSettingsGroupSettingDictionary.m */; };
+		A9F13DE319597AE60002272B /* JTSettingsMultiChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F13DD719597AE60002272B /* JTSettingsMultiChoice.m */; };
+		A9F13DE419597AE60002272B /* JTSettingsOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F13DD919597AE60002272B /* JTSettingsOptionsViewController.m */; };
+		A9F13DE519597AE60002272B /* JTSettingsSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F13DDB19597AE60002272B /* JTSettingsSwitchCell.m */; };
+		A9F13DE619597AE60002272B /* JTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F13DDD19597AE60002272B /* JTSettingsViewController.m */; };
+		A9F13DEA19597C280002272B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DE919597C280002272B /* UIKit.framework */; };
+		A9F13E6419598EB00002272B /* JTSettingsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DCD19597AE60002272B /* JTSettingsCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F13E6619598EB00002272B /* JTSettingsGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD219597AE60002272B /* JTSettingsGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F13E6719598EB00002272B /* JTSettingsMultiChoice.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD619597AE60002272B /* JTSettingsMultiChoice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F13E6819598EB00002272B /* JTSettingsOptionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD819597AE60002272B /* JTSettingsOptionsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F13E6919598EB00002272B /* JTSettingsSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DDA19597AE60002272B /* JTSettingsSwitchCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F13E6A19598EB00002272B /* JTSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DDC19597AE60002272B /* JTSettingsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F13E6B19598EB00002272B /* JTSettingsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DAC19597A830002272B /* JTSettingsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9F13E6E1959905A0002272B /* JTSettingsGroupSettingDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A9F13DBA19597A830002272B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9F13D9C19597A830002272B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9F13DA319597A830002272B;
+			remoteInfo = JTSettingsKit;
+		};
+		A9F13E0419597F400002272B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9F13D9C19597A830002272B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9F13DA319597A830002272B;
+			remoteInfo = JTSettingsKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A9F13DA419597A830002272B /* libJTSettingsKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJTSettingsKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9F13DA719597A830002272B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A9F13DAC19597A830002272B /* JTSettingsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTSettingsKit.h; sourceTree = "<group>"; };
+		A9F13DB419597A830002272B /* JTSettingsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JTSettingsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9F13DCD19597AE60002272B /* JTSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsCell.h; sourceTree = "<group>"; };
+		A9F13DCE19597AE60002272B /* JTSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsCell.m; sourceTree = "<group>"; };
+		A9F13DD219597AE60002272B /* JTSettingsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsGroup.h; sourceTree = "<group>"; };
+		A9F13DD319597AE60002272B /* JTSettingsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsGroup.m; sourceTree = "<group>"; };
+		A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsGroupSettingDictionary.h; sourceTree = "<group>"; };
+		A9F13DD519597AE60002272B /* JTSettingsGroupSettingDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsGroupSettingDictionary.m; sourceTree = "<group>"; };
+		A9F13DD619597AE60002272B /* JTSettingsMultiChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsMultiChoice.h; sourceTree = "<group>"; };
+		A9F13DD719597AE60002272B /* JTSettingsMultiChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsMultiChoice.m; sourceTree = "<group>"; };
+		A9F13DD819597AE60002272B /* JTSettingsOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsOptionsViewController.h; sourceTree = "<group>"; };
+		A9F13DD919597AE60002272B /* JTSettingsOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsOptionsViewController.m; sourceTree = "<group>"; };
+		A9F13DDA19597AE60002272B /* JTSettingsSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsSwitchCell.h; sourceTree = "<group>"; };
+		A9F13DDB19597AE60002272B /* JTSettingsSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsSwitchCell.m; sourceTree = "<group>"; };
+		A9F13DDC19597AE60002272B /* JTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsViewController.h; sourceTree = "<group>"; };
+		A9F13DDD19597AE60002272B /* JTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsViewController.m; sourceTree = "<group>"; };
+		A9F13DE919597C280002272B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A9F13E53195985640002272B /* JTSettingsKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JTSettingsKit-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9F13DA119597A830002272B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9F13DEA19597C280002272B /* UIKit.framework in Frameworks */,
+				A9F13DA819597A830002272B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9F13DB119597A830002272B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9F13DB719597A830002272B /* Foundation.framework in Frameworks */,
+				A9F13DBC19597A830002272B /* libJTSettingsKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A9EBE60D195997BA00FF85A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9F13DD219597AE60002272B /* JTSettingsGroup.h */,
+				A9F13DD319597AE60002272B /* JTSettingsGroup.m */,
+				A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */,
+				A9F13DD519597AE60002272B /* JTSettingsGroupSettingDictionary.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A9EBE60E195997C000FF85A7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9F13DCD19597AE60002272B /* JTSettingsCell.h */,
+				A9F13DCE19597AE60002272B /* JTSettingsCell.m */,
+				A9F13DD619597AE60002272B /* JTSettingsMultiChoice.h */,
+				A9F13DD719597AE60002272B /* JTSettingsMultiChoice.m */,
+				A9F13DDA19597AE60002272B /* JTSettingsSwitchCell.h */,
+				A9F13DDB19597AE60002272B /* JTSettingsSwitchCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A9EBE60F195997C500FF85A7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A9F13DDC19597AE60002272B /* JTSettingsViewController.h */,
+				A9F13DDD19597AE60002272B /* JTSettingsViewController.m */,
+				A9F13DD819597AE60002272B /* JTSettingsOptionsViewController.h */,
+				A9F13DD919597AE60002272B /* JTSettingsOptionsViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A9F13D9B19597A830002272B = {
+			isa = PBXGroup;
+			children = (
+				A9F13DA919597A830002272B /* JTSettingsKit */,
+				A9F13DA619597A830002272B /* Frameworks */,
+				A9F13DA519597A830002272B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A9F13DA519597A830002272B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9F13DA419597A830002272B /* libJTSettingsKit.a */,
+				A9F13DB419597A830002272B /* JTSettingsKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9F13DA619597A830002272B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A9F13DE919597C280002272B /* UIKit.framework */,
+				A9F13DA719597A830002272B /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9F13DA919597A830002272B /* JTSettingsKit */ = {
+			isa = PBXGroup;
+			children = (
+				A9EBE60F195997C500FF85A7 /* Controller */,
+				A9EBE60E195997C000FF85A7 /* View */,
+				A9EBE60D195997BA00FF85A7 /* Model */,
+				A9F13DAC19597A830002272B /* JTSettingsKit.h */,
+				A9F13DAA19597A830002272B /* Supporting Files */,
+			);
+			path = JTSettingsKit;
+			sourceTree = "<group>";
+		};
+		A9F13DAA19597A830002272B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A9F13E53195985640002272B /* JTSettingsKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A9F13DE819597B990002272B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9F13E6419598EB00002272B /* JTSettingsCell.h in Headers */,
+				A9F13E6619598EB00002272B /* JTSettingsGroup.h in Headers */,
+				A9F13E6719598EB00002272B /* JTSettingsMultiChoice.h in Headers */,
+				A9F13E6819598EB00002272B /* JTSettingsOptionsViewController.h in Headers */,
+				A9F13E6919598EB00002272B /* JTSettingsSwitchCell.h in Headers */,
+				A9F13E6A19598EB00002272B /* JTSettingsViewController.h in Headers */,
+				A9F13E6E1959905A0002272B /* JTSettingsGroupSettingDictionary.h in Headers */,
+				A9F13E6B19598EB00002272B /* JTSettingsKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A9F13DA319597A830002272B /* JTSettingsKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9F13DC719597A830002272B /* Build configuration list for PBXNativeTarget "JTSettingsKit" */;
+			buildPhases = (
+				A9F13DA019597A830002272B /* Sources */,
+				A9F13DA119597A830002272B /* Frameworks */,
+				A9F13DE819597B990002272B /* Headers */,
+				A9F13DFF19597EDC0002272B /* Prepare framework */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JTSettingsKit;
+			productName = JTSettingsKit;
+			productReference = A9F13DA419597A830002272B /* libJTSettingsKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A9F13DB319597A830002272B /* JTSettingsKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9F13DCA19597A830002272B /* Build configuration list for PBXNativeTarget "JTSettingsKitTests" */;
+			buildPhases = (
+				A9F13DB019597A830002272B /* Sources */,
+				A9F13DB119597A830002272B /* Frameworks */,
+				A9F13DB219597A830002272B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9F13DBB19597A830002272B /* PBXTargetDependency */,
+			);
+			name = JTSettingsKitTests;
+			productName = JTSettingsKitTests;
+			productReference = A9F13DB419597A830002272B /* JTSettingsKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9F13D9C19597A830002272B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Joris Timmerman";
+			};
+			buildConfigurationList = A9F13D9F19597A830002272B /* Build configuration list for PBXProject "JTSettingsKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A9F13D9B19597A830002272B;
+			productRefGroup = A9F13DA519597A830002272B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9F13DA319597A830002272B /* JTSettingsKit */,
+				A9F13DB319597A830002272B /* JTSettingsKitTests */,
+				A9F13E0019597F360002272B /* Framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9F13DB219597A830002272B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A9F13DFF19597EDC0002272B /* Prepare framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
+		};
+		A9F13E0619597F4A0002272B /* Build Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/${FRAMEWORK_VERSION}/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/${FRAMEWORK_VERSION}/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/${FRAMEWORK_VERSION}/${SF_TARGET_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9F13DA019597A830002272B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9F13DE119597AE60002272B /* JTSettingsGroup.m in Sources */,
+				A9F13DDE19597AE60002272B /* JTSettingsCell.m in Sources */,
+				A9F13DE519597AE60002272B /* JTSettingsSwitchCell.m in Sources */,
+				A9F13DE219597AE60002272B /* JTSettingsGroupSettingDictionary.m in Sources */,
+				A9F13DE419597AE60002272B /* JTSettingsOptionsViewController.m in Sources */,
+				A9F13DE319597AE60002272B /* JTSettingsMultiChoice.m in Sources */,
+				A9F13DE619597AE60002272B /* JTSettingsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9F13DB019597A830002272B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A9F13DBB19597A830002272B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9F13DA319597A830002272B /* JTSettingsKit */;
+			targetProxy = A9F13DBA19597A830002272B /* PBXContainerItemProxy */;
+		};
+		A9F13E0519597F400002272B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9F13DA319597A830002272B /* JTSettingsKit */;
+			targetProxy = A9F13E0419597F400002272B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A9F13DC519597A830002272B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A9F13DC619597A830002272B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9F13DC819597A830002272B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/JTSettingsKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTSettingsKit/JTSettingsKit-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		A9F13DC919597A830002272B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/JTSettingsKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTSettingsKit/JTSettingsKit-Prefix.pch";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		A9F13DCB19597A830002272B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTSettingsKit/JTSettingsKit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "JTSettingsKitTests/JTSettingsKitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A9F13DCC19597A830002272B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JTSettingsKit/JTSettingsKit-Prefix.pch";
+				INFOPLIST_FILE = "JTSettingsKitTests/JTSettingsKitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		A9F13E0219597F370002272B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A9F13E0319597F370002272B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9F13D9F19597A830002272B /* Build configuration list for PBXProject "JTSettingsKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9F13DC519597A830002272B /* Debug */,
+				A9F13DC619597A830002272B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9F13DC719597A830002272B /* Build configuration list for PBXNativeTarget "JTSettingsKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9F13DC819597A830002272B /* Debug */,
+				A9F13DC919597A830002272B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9F13DCA19597A830002272B /* Build configuration list for PBXNativeTarget "JTSettingsKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9F13DCB19597A830002272B /* Debug */,
+				A9F13DCC19597A830002272B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9F13E0119597F370002272B /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9F13E0219597F370002272B /* Debug */,
+				A9F13E0319597F370002272B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A9F13D9C19597A830002272B /* Project object */;
+}
