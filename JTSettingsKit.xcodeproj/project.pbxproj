@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		A9EBE6111959A6D100FF85A7 /* JTSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9EBE6101959A6D100FF85A7 /* JTSettingsViewController.h */; };
 		A9F13DA819597A830002272B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DA719597A830002272B /* Foundation.framework */; };
 		A9F13DB719597A830002272B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DA719597A830002272B /* Foundation.framework */; };
 		A9F13DBC19597A830002272B /* libJTSettingsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DA419597A830002272B /* libJTSettingsKit.a */; };
@@ -38,7 +39,6 @@
 		A9F13E6719598EB00002272B /* JTSettingsMultiChoice.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD619597AE60002272B /* JTSettingsMultiChoice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F13E6819598EB00002272B /* JTSettingsOptionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD819597AE60002272B /* JTSettingsOptionsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F13E6919598EB00002272B /* JTSettingsSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DDA19597AE60002272B /* JTSettingsSwitchCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9F13E6A19598EB00002272B /* JTSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DDC19597AE60002272B /* JTSettingsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F13E6B19598EB00002272B /* JTSettingsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DAC19597A830002272B /* JTSettingsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9F13E6E1959905A0002272B /* JTSettingsGroupSettingDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -61,24 +61,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A9EBE6101959A6D100FF85A7 /* JTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsViewController.h; path = Source/JTSettingsViewController.h; sourceTree = "<group>"; };
 		A9F13DA419597A830002272B /* libJTSettingsKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJTSettingsKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F13DA719597A830002272B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A9F13DAC19597A830002272B /* JTSettingsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTSettingsKit.h; sourceTree = "<group>"; };
 		A9F13DB419597A830002272B /* JTSettingsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JTSettingsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9F13DCD19597AE60002272B /* JTSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsCell.h; sourceTree = "<group>"; };
-		A9F13DCE19597AE60002272B /* JTSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsCell.m; sourceTree = "<group>"; };
-		A9F13DD219597AE60002272B /* JTSettingsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsGroup.h; sourceTree = "<group>"; };
-		A9F13DD319597AE60002272B /* JTSettingsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsGroup.m; sourceTree = "<group>"; };
-		A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsGroupSettingDictionary.h; sourceTree = "<group>"; };
-		A9F13DD519597AE60002272B /* JTSettingsGroupSettingDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsGroupSettingDictionary.m; sourceTree = "<group>"; };
-		A9F13DD619597AE60002272B /* JTSettingsMultiChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsMultiChoice.h; sourceTree = "<group>"; };
-		A9F13DD719597AE60002272B /* JTSettingsMultiChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsMultiChoice.m; sourceTree = "<group>"; };
-		A9F13DD819597AE60002272B /* JTSettingsOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsOptionsViewController.h; sourceTree = "<group>"; };
-		A9F13DD919597AE60002272B /* JTSettingsOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsOptionsViewController.m; sourceTree = "<group>"; };
-		A9F13DDA19597AE60002272B /* JTSettingsSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsSwitchCell.h; sourceTree = "<group>"; };
-		A9F13DDB19597AE60002272B /* JTSettingsSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsSwitchCell.m; sourceTree = "<group>"; };
-		A9F13DDC19597AE60002272B /* JTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsViewController.h; sourceTree = "<group>"; };
-		A9F13DDD19597AE60002272B /* JTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsViewController.m; sourceTree = "<group>"; };
+		A9F13DCD19597AE60002272B /* JTSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsCell.h; path = Source/JTSettingsCell.h; sourceTree = "<group>"; };
+		A9F13DCE19597AE60002272B /* JTSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsCell.m; path = Source/JTSettingsCell.m; sourceTree = "<group>"; };
+		A9F13DD219597AE60002272B /* JTSettingsGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsGroup.h; path = Source/JTSettingsGroup.h; sourceTree = "<group>"; };
+		A9F13DD319597AE60002272B /* JTSettingsGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsGroup.m; path = Source/JTSettingsGroup.m; sourceTree = "<group>"; };
+		A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsGroupSettingDictionary.h; path = Source/JTSettingsGroupSettingDictionary.h; sourceTree = "<group>"; };
+		A9F13DD519597AE60002272B /* JTSettingsGroupSettingDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsGroupSettingDictionary.m; path = Source/JTSettingsGroupSettingDictionary.m; sourceTree = "<group>"; };
+		A9F13DD619597AE60002272B /* JTSettingsMultiChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsMultiChoice.h; path = Source/JTSettingsMultiChoice.h; sourceTree = "<group>"; };
+		A9F13DD719597AE60002272B /* JTSettingsMultiChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsMultiChoice.m; path = Source/JTSettingsMultiChoice.m; sourceTree = "<group>"; };
+		A9F13DD819597AE60002272B /* JTSettingsOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsOptionsViewController.h; path = Source/JTSettingsOptionsViewController.h; sourceTree = "<group>"; };
+		A9F13DD919597AE60002272B /* JTSettingsOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsOptionsViewController.m; path = Source/JTSettingsOptionsViewController.m; sourceTree = "<group>"; };
+		A9F13DDA19597AE60002272B /* JTSettingsSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsSwitchCell.h; path = Source/JTSettingsSwitchCell.h; sourceTree = "<group>"; };
+		A9F13DDB19597AE60002272B /* JTSettingsSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsSwitchCell.m; path = Source/JTSettingsSwitchCell.m; sourceTree = "<group>"; };
+		A9F13DDD19597AE60002272B /* JTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsViewController.m; path = Source/JTSettingsViewController.m; sourceTree = "<group>"; };
 		A9F13DE919597C280002272B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9F13E53195985640002272B /* JTSettingsKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JTSettingsKit-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,7 +132,7 @@
 		A9EBE60F195997C500FF85A7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A9F13DDC19597AE60002272B /* JTSettingsViewController.h */,
+				A9EBE6101959A6D100FF85A7 /* JTSettingsViewController.h */,
 				A9F13DDD19597AE60002272B /* JTSettingsViewController.m */,
 				A9F13DD819597AE60002272B /* JTSettingsOptionsViewController.h */,
 				A9F13DD919597AE60002272B /* JTSettingsOptionsViewController.m */,
@@ -199,8 +199,8 @@
 				A9F13E6719598EB00002272B /* JTSettingsMultiChoice.h in Headers */,
 				A9F13E6819598EB00002272B /* JTSettingsOptionsViewController.h in Headers */,
 				A9F13E6919598EB00002272B /* JTSettingsSwitchCell.h in Headers */,
-				A9F13E6A19598EB00002272B /* JTSettingsViewController.h in Headers */,
 				A9F13E6E1959905A0002272B /* JTSettingsGroupSettingDictionary.h in Headers */,
+				A9EBE6111959A6D100FF85A7 /* JTSettingsViewController.h in Headers */,
 				A9F13E6B19598EB00002272B /* JTSettingsKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
