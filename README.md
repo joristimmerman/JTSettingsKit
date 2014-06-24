@@ -44,7 +44,8 @@ This example will create 2 sections with 1 setting each.
     [self presentViewController:settingsController animated:YES completion:nil];
 }
 
-- (NSArray *)settingsViewController: (JTSettingsViewController *)settingsViewController optionsForSettingWithKey:(NSString *)key {
+- (NSArray *)settingsViewController: (JTSettingsViewController *)settingsViewController 
+           optionsForSettingWithKey:(NSString *)key {
     
     if([key isEqualToString:@"VideoResolutions"]){
         return @[@"high", @"medium", @"low"];
@@ -53,7 +54,8 @@ This example will create 2 sections with 1 setting each.
 	return nil;
 }
 
-- (void)settingsViewController:(JTSettingsViewController *)settingsViewController valueChangedForSettingWithKey:(NSString *)key toValue:(id)value{
+- (void)settingsViewController:(JTSettingsViewController *)settingsViewController 
+ valueChangedForSettingWithKey:(NSString *)key toValue:(id)value{
     NSLog(@"Setting with key %@ changed to %@", key, value);
     // update your model
 }
