@@ -24,9 +24,9 @@
 // THE SOFTWARE.
 
 enum  {
-	SettingsOptionTypeUnknown = 0,
-	SettingsOptionTypeSwitch = 1,
-	SettingsOptionTypeMultiValue = 2
+	JTSettingsOptionTypeUnknown = 0,
+	JTSettingsOptionTypeSwitch = 1,
+	JTSettingsOptionTypeMultiValue = 2
 };
 typedef NSUInteger SettingsOptionType;
 

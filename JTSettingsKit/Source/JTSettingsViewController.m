@@ -194,11 +194,11 @@ typedef NSInteger SettingsType;
 		NSString *key = [group keyOfSettingAt:cellIndex];
 		SettingsOptionType type = [group settingTypeForSettingWithKey:key];
 		switch (type) {
-			case SettingsOptionTypeSwitch:
+			case JTSettingsOptionTypeSwitch:
 				return kCellIdentifierSwitchCell;
 				break;
 
-			case SettingsOptionTypeMultiValue:
+			case JTSettingsOptionTypeMultiValue:
 				return kCellIdentifierMultiValueCell;
 				break;
 		}
@@ -224,7 +224,7 @@ typedef NSInteger SettingsType;
 		SettingsOptionType type = [group settingTypeForSettingWithKey:key];
 
 		switch (type) {
-			case SettingsOptionTypeMultiValue:
+			case JTSettingsOptionTypeMultiValue:
 				[tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 				NSArray *options;
@@ -253,7 +253,7 @@ typedef NSInteger SettingsType;
 		NSString *key = [group keyOfSettingAt:path.row];
 		SettingsOptionType settingType = [group settingTypeForSettingWithKey:key];
 		switch (settingType) {
-			case SettingsOptionTypeSwitch:
+			case JTSettingsOptionTypeSwitch:
 				[[NSUserDefaults standardUserDefaults] setBool:[(NSNumber *)value boolValue] forKey:key];
 				break;
 
