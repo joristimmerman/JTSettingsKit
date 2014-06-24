@@ -19,27 +19,18 @@ This example will create 2 sections with 1 setting each.
     settingsController.delegate = self;
     settingsController.title = @"Settings";
     
-    settingsController.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc]
-     initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-     target:self
-     action:@selector(closeView)];
-    
     // create a group (one is required)
-    JTSettingsGroup *generalGroup = [[JTSettingsGroup alloc]
-                                     initWithTitle:@"General Settings"];
+    JTSettingsGroup *generalGroup = [[JTSettingsGroup alloc] initWithTitle:@"General Settings"];
     
     //add a setting to the generalGroup
     [generalGroup addOptionForType:JTSettingsOptionTypeSwitch
                              label:@"On/Off Switch"
                 forUserDefaultsKey:@"OnOff"
-                         withValue:[NSNumber
-                                    numberWithBool:YES]
+                         withValue:[NSNumber numberWithBool:YES]
                            options:nil];
     
     // create a new section: Camera
-    JTSettingsGroup *cameraGroup = [[JTSettingsGroup alloc]
-                                    initWithTitle:@"Camera"];
+    JTSettingsGroup *cameraGroup = [[JTSettingsGroup alloc] initWithTitle:@"Camera"];
     
     // Add a multi-select setting (selection of 1 item in a list)
     [cameraGroup addOptionForType:JTSettingsOptionTypeMultiValue
@@ -56,7 +47,7 @@ This example will create 2 sections with 1 setting each.
 - (NSArray *)settingsViewController: (JTSettingsViewController *)settingsViewController optionsForSettingWithKey:(NSString *)key {
     
     if([key isEqualToString:@"VideoResolutions"]){
-        return @[@"high",@"medium",@"low"];
+        return @[@"high", @"medium", @"low"];
     }
     
 	return nil;
