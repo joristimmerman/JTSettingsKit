@@ -25,24 +25,55 @@
 
 #import "JTSettingsGroup.h"
 #import "JTSettingsGroupSettingDictionary.h"
+#import "JTSettingsChoicesViewController.h"
 
 #pragma mark -Internal class
 @interface Setting : NSObject
+
+@property (nonatomic) UIViewController<JTSettingsEditing> *editor;
 @property NSUInteger type;
 @property NSString *userDefaultsKey;
 @property id value;
 @property NSString *label;
-@property NSDictionary *options;
+@property (nonatomic) NSDictionary *options;
 
 - (id)initWithType:(NSInteger)type label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value;
-
+- (id)initWithEditor:(UIViewController<JTSettingsEditing> *)editor label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value ;
 @end
 
 @implementation Setting
 
+-(void)setOptions:(NSDictionary *)options {
+    _options = options;
+    [self applyOptionsToEditor];
+}
+
+-(void) setEditor:(UIViewController<JTSettingsEditing> *)editor{
+    _editor = editor;
+    [self applyOptionsToEditor];
+}
+
 - (id)initWithType:(NSInteger)type label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value {
 	self = [self init];
 	if (self) {
+        
+        switch(type){
+            case JTSettingTypeChoice:
+            case JTSettingTypeMultiChoice:
+                self.editor = [[JTSettingsChoicesViewController alloc] init];
+                
+                NSDictionary *options = self.options;
+                if(options){
+                   NSMutableDictionary *otherOptions = [NSMutableDictionary dictionaryWithDictionary:options];
+                    [otherOptions setObject:[NSNumber numberWithBool:(type==JTSettingTypeMultiChoice)]
+                                     forKey:@"allowMultiSelection"];
+                    
+                    self.options = [NSDictionary dictionaryWithDictionary:otherOptions];
+                }else{
+                    options = @{@"allowMultiSelection":[NSNumber numberWithBool:(type==JTSettingTypeMultiChoice)]};
+                }
+        }
+
 		self.label = label;
 		self.type = type;
 		self.userDefaultsKey = userDefaultsKey;
@@ -51,6 +82,27 @@
 	return self;
 }
 
+- (id)initWithEditor:(UIViewController<JTSettingsEditing> *)editor label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value {
+	self = [self init];
+	if (self) {
+        self.type= JTSettingTypeCustom;
+		self.label = label;
+		self.editor = editor;
+		self.userDefaultsKey = userDefaultsKey;
+		self.value = value;
+	}
+	return self;
+}
+
+-(void) applyOptionsToEditor{
+    if(!_options || !_editor){
+        return;
+    }
+    
+    for (NSString* key in _options) {
+        [self.editor setValue:[_options valueForKey:key] forKey:key];
+    }
+}
 @end
 
 #pragma mark -SettingsGroup class
@@ -85,11 +137,36 @@
 	return _options.allKeys.count;
 }
 
-- (void)addOptionForType:(SettingsOptionType)settingType label:(NSString *)label forUserDefaultsKey:(NSString *)userDefaultsKey withValue:(id)value options:(NSDictionary *)optionsOrNil {
-	Setting *setting = [[Setting alloc] initWithType:settingType label:label userDefaultsKey:userDefaultsKey andValue:value];
-	setting.options = optionsOrNil;
+- (void)addSettingWithType:(JTSettingType)settingType
+                     label:(NSString *)label
+        forUserDefaultsKey:(NSString *)userDefaultsKey
+                 withValue:(id)value
+                   options:(NSDictionary *)optionsOrNil {
+    
+	Setting *setting = [[Setting alloc] initWithType:settingType
+                                               label:label
+                                     userDefaultsKey:userDefaultsKey
+                                            andValue:value];
+    
+    if(optionsOrNil){
+        setting.options = optionsOrNil;
+    }
 
 	[_options setObject:setting forKey:userDefaultsKey];
+}
+
+-(void) addSettingWithEditor:(UIViewController<JTSettingsEditing> *)editor
+                       label:(NSString *)label
+          forUserDefaultsKey:(NSString *)userDefaultsKey
+                   withValue:(id)value
+                     options:(NSDictionary *)optionsOrNil {
+   
+    Setting *setting = [[Setting alloc] initWithEditor:editor
+                                                 label:label
+                                     userDefaultsKey:userDefaultsKey
+                                            andValue:value];
+    setting.options = optionsOrNil;
+    [_options setObject:setting forKey:userDefaultsKey];
 }
 
 - (id)settingValueForSettingWithKey:(NSString *)key {
@@ -102,7 +179,17 @@
 	return setting.label;
 }
 
-- (SettingsOptionType)settingTypeForSettingWithKey:(NSString *)key {
+-(UIViewController<JTSettingsEditing> *) editorForSettingWithKey:(NSString *) key {
+    Setting *setting = [_options objectForKey:key];
+	return setting.editor;
+}
+
+- (NSDictionary *) optionsForSettingWithKey:(NSString *) key {
+    Setting *setting = [_options objectForKey:key];
+	return setting.options;
+}
+
+- (JTSettingType)settingTypeForSettingWithKey:(NSString *)key {
 	Setting *setting = [_options objectForKey:key];
 	return setting.type;
 }
@@ -117,7 +204,7 @@
 	setting.label = label;
 }
 
-- (void)updateSettingType:(SettingsOptionType)type forSettingWithKey:(NSString *)key {
+- (void)updateSettingType:(JTSettingType)type forSettingWithKey:(NSString *)key {
 	Setting *setting = [_options objectForKey:key];
 	setting.type = type;
 }
@@ -125,6 +212,11 @@
 - (NSString *)keyOfSettingAt:(NSUInteger)index {
 	NSString *key = [[_options allKeys] objectAtIndex:index];
 	return key;
+}
+
+- (BOOL) hasEditorForSettingWithKey:(NSString *) key{
+    Setting *setting = [_options objectForKey:key];
+    return (setting.editor != nil);
 }
 
 - (BOOL)hasKey:(NSString *)key {

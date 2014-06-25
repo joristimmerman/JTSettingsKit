@@ -22,13 +22,15 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+#import "JTSettingsEditing.h"
 
 enum  {
-	JTSettingsOptionTypeUnknown = 0,
-	JTSettingsOptionTypeSwitch = 1,
-	JTSettingsOptionTypeMultiValue = 2
+	JTSettingTypeCustom = 0,
+	JTSettingTypeSwitch = 1,
+	JTSettingTypeChoice,
+  	JTSettingTypeMultiChoice
 };
-typedef NSUInteger SettingsOptionType;
+typedef NSUInteger JTSettingType;
 
 @interface JTSettingsGroup : NSObject
 
@@ -38,18 +40,40 @@ typedef NSUInteger SettingsOptionType;
 - (NSUInteger)count;
 
 - (id)initWithTitle:(NSString *)title;
-- (void)addOptionForType:(SettingsOptionType)settingType label:(NSString *)label forUserDefaultsKey:(NSString *)userDefaultsKey withValue:(id)value options:(NSDictionary *)optionsOrNil;
+
+- (void)addSettingWithType:(JTSettingType)settingType
+                     label:(NSString *)label
+        forUserDefaultsKey:(NSString *)userDefaultsKey
+                 withValue:(id)value
+                   options:(NSDictionary *)optionsOrNil;
+
+- (void) addSettingWithEditor:(UIViewController<JTSettingsEditing> *)editor
+                       label:(NSString *)label
+          forUserDefaultsKey:(NSString *)userDefaultsKey
+                   withValue:(id)value
+                     options:(NSDictionary *)optionsOrNil;
 
 - (id)settingValueForSettingWithKey:(NSString *)key;
 - (NSString *)settingLabelForSettingWithKey:(NSString *)key;
-- (SettingsOptionType)settingTypeForSettingWithKey:(NSString *)key;
+- (JTSettingType)settingTypeForSettingWithKey:(NSString *)key;
+- (UIViewController<JTSettingsEditing> *) editorForSettingWithKey:(NSString *) key;
+- (NSDictionary *) optionsForSettingWithKey:(NSString *) key;
 
 - (void)updateSettingValue:(id)value forSettingWithKey:(NSString *)key;
 - (void)updateSettingLabel:(NSString *)label forSettingWithKey:(NSString *)key;
-- (void)updateSettingType:(SettingsOptionType)type forSettingWithKey:(NSString *)key;
+- (void)updateSettingType:(JTSettingType)type forSettingWithKey:(NSString *)key;
 
 - (NSString *)keyOfSettingAt:(NSUInteger)index;
+
+- (BOOL) hasEditorForSettingWithKey:(NSString *) key;
 
 - (BOOL)hasKey:(NSString *)key;
 - (NSUInteger)indexForKey:(NSString *)key;
 @end
+
+
+
+
+
+
+

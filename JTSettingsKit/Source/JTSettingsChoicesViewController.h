@@ -23,21 +23,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
-@protocol JTSettingsOptionsViewControllerDelegate;
-@interface JTSettingsOptionsViewController : UITableViewController
+#import "JTSettingsEditorDelegate.h"
+#import "JTSettingsEditing.h"
 
-@property id <JTSettingsOptionsViewControllerDelegate> delegate;
+@interface JTSettingsChoicesViewController : UITableViewController <JTSettingsEditing>
 
-@property NSString *key;
+@property id<JTSettingsEditorDelegate> delegate;
 
-@property (nonatomic) NSArray *options;
-@property (nonatomic) id selectedData;
-@end
+@property (nonatomic) JTSettingsGroup *settingsGroup;
+@property (nonatomic) NSString *settingsKey;
+@property (nonatomic) id selectedValue;
 
-@protocol JTSettingsOptionsViewControllerDelegate <NSObject>
+@property (nonatomic) NSDictionary *data;
 
-@optional
-- (void)settingsOptionsViewController:(JTSettingsOptionsViewController *)viewController selectedValueChangedToValue:(id)value;
-
+@property (nonatomic) BOOL allowMultiSelection;
 @end

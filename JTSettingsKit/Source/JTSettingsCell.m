@@ -30,7 +30,8 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 	if (self) {
-		[self setSelectionStyle:UITableViewCellSelectionStyleNone];
+		[self setSelectionStyle:UITableViewCellSelectionStyleDefault];
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	return self;
 }
@@ -42,7 +43,7 @@
 
 - (void)dispatchValueChanged {
 	if ([self.delegate respondsToSelector:@selector(settingsCell:valueChangedForSettingWithKey:toValue:)]) {
-		[self.delegate settingsCell:self valueChangedForSettingWithKey:self.key toValue:self.value];
+		[self.delegate settingsCell:self valueChangedForSettingWithKey:self.key toValue:self.selectedValue];
 	}
 }
 

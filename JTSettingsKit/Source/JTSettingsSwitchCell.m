@@ -37,6 +37,8 @@
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 	if (self) {
 		switchControl = [[UISwitch alloc] initWithFrame:CGRectZero];
+        self.accessoryType = UITableViewCellAccessoryNone;
+        
 		self.accessoryView = switchControl;
 
 		[switchControl addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -44,7 +46,7 @@
 	return self;
 }
 
-- (void)setValue:(id)value {
+- (void)setSelectedValue:(id)value{
 	BOOL boolval = [value boolValue];
 	switchControl.on = boolval;
 }
@@ -54,7 +56,7 @@
 }
 
 - (void)switchChanged:(UISwitch *)sender {
-	[super setValue:[NSNumber numberWithBool:sender.on]];
+	[super setSelectedValue:[NSNumber numberWithBool:sender.on]];
 	[self dispatchValueChanged];
 }
 

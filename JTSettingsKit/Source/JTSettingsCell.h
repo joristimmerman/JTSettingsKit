@@ -25,13 +25,16 @@
 
 @protocol JTSettingsCellDelegate;
 @interface JTSettingsCell : UITableViewCell
-@property (nonatomic, strong) id value;
+
 @property NSString *key;
+@property (nonatomic) id selectedValue;
+
 @property (nonatomic) NSString *label;
 
 @property id <JTSettingsCellDelegate> delegate;
 
 - (void)dispatchValueChanged;
+
 @end
 
 @protocol JTSettingsCellDelegate <NSObject>

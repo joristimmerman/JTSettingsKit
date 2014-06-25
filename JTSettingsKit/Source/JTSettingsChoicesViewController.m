@@ -23,15 +23,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "JTSettingsOptionsViewController.h"
+#import "JTSettingsChoicesViewController.h"
 
-@interface JTSettingsOptionsViewController ()
+@interface JTSettingsChoicesViewController ()
 {
 	NSObject *_defaultValue;
+    NSMutableArray *_selectedItems;
 }
 @end
 
-@implementation JTSettingsOptionsViewController
+@implementation JTSettingsChoicesViewController
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    }
+    return self;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style {
 	self = [super initWithStyle:style];
@@ -41,18 +50,30 @@
 	return self;
 }
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-}
-
-- (void)setOptions:(NSArray *)options {
-	_options = options;
+- (void)setData:(NSDictionary *)options {
+	_data = options;
 	[self.tableView reloadData];
 }
 
-- (void)setSelectedData:(id)selectedData {
-	_selectedData = selectedData;
+- (void)setSelectedValue:(id)selectedValue{
+    if([selectedValue isKindOfClass:[NSArray class]]){
+        _selectedItems = selectedValue;
+    }else{
+        _selectedItems = [NSMutableArray arrayWithObject:selectedValue];
+    }
 	[self selectSelectedData];
+}
+
+-(id) selectedValue{
+    if(_allowMultiSelection){
+        return _selectedItems;
+    }
+    return [_selectedItems firstObject];
+}
+
+-(void) setAllowMultiSelection:(BOOL)allowMultiSelection {
+    _allowMultiSelection = allowMultiSelection;
+    self.tableView.allowsMultipleSelection = allowMultiSelection;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +88,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSUInteger count = self.options.count;
+	NSUInteger count = [self.data.allKeys count];
 	return count;
 }
 
@@ -80,12 +101,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	_selectedData = [self.options objectAtIndex:indexPath.row];
-	if (_selectedData) {
-		if ([self.delegate respondsToSelector:@selector(settingsOptionsViewController:selectedValueChangedToValue:)]) {
-			NSArray *keys = [_selectedData allKeys];
-			NSObject *key = [keys objectAtIndex:0];
-			[self.delegate settingsOptionsViewController:self selectedValueChangedToValue:key];
+    NSString *key = [[self.data allKeys] objectAtIndex:indexPath.row];
+	if (key) {
+        [_selectedItems addObject:key];
+        
+		if ([self.delegate respondsToSelector:@selector(settingsEditorViewController:selectedValueChangedToValue:)]) {
+			[self.delegate settingsEditorViewController:self selectedValueChangedToValue:key];
 		}
 
 		[self.navigationController popViewControllerAnimated:YES];
@@ -93,21 +114,21 @@
 }
 
 - (NSString *)textForCellIndex:(NSIndexPath *)indexPath {
-	NSDictionary *dict = [self.options objectAtIndex:indexPath.row];
-	NSString *key = [[dict allKeys] objectAtIndex:0];
-
-	return [dict objectForKey:key];
+    NSString *key = [[self.data allKeys] objectAtIndex:indexPath.row];
+    return key ? [self.data objectForKey:key] : nil;
 }
 
 - (void)selectRowWithKey:(NSObject *)key {
 	NSInteger index = -1;
-	for (NSDictionary *dictionary in _options) {
-		NSString *dictKey = [[dictionary allKeys] objectAtIndex:0];
-		if ([dictKey isEqual:key]) {
-			index = [_options indexOfObject:dictionary];
-			break;
-		}
-	}
+
+    NSUInteger c=0;
+    for(NSObject *keyInData in [_data allKeys]){
+        if([key isEqual:keyInData]){
+            index=c;
+            break;
+        }
+        c++;
+    }
 
 	if (index >= 0) {
 		NSIndexPath *pathToCell = [NSIndexPath indexPathForRow:index inSection:0];
@@ -115,11 +136,18 @@
 	}
 }
 
+- (void)selectRowsWithKeys:(NSArray *)keys {
+    for(id key in keys){
+        [self selectRowWithKey:key];
+    }
+}
+
 - (void)selectSelectedData {
-	if (!_selectedData) {
+	if (!_selectedItems || _selectedItems.count == 0) {
 		return;
 	}
-	[self performSelector:@selector(selectRowWithKey:) withObject:_selectedData afterDelay:0];
+    
+    [self performSelector:@selector(selectRowsWithKeys:) withObject:_selectedItems afterDelay:0];
 }
 
 @end

@@ -23,9 +23,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "JTSettingsMultiChoice.h"
+#import "JTSettingsChoiceCell.h"
 
-@implementation JTSettingsMultiChoice
+@implementation JTSettingsChoiceCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
@@ -40,4 +40,12 @@
 	[super setSelected:selected animated:YES];
 }
 
+-(void)setSelectedValue:(id)selectedValue{
+    super.selectedValue = selectedValue;
+    [self updateSelectedValueLabel];
+}
+
+-(void) updateSelectedValueLabel{
+    
+}
 @end

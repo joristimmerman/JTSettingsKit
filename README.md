@@ -32,7 +32,7 @@ This example will create 2 sections with 1 setting each.
     // create a new section: Camera
     JTSettingsGroup *cameraGroup = [[JTSettingsGroup alloc] initWithTitle:@"Camera"];
     
-    // Add a multi-select setting (selection of 1 item in a list)
+    // Add a select setting (selection of 1 item in a list)
     [cameraGroup addOptionForType:JTSettingsOptionTypeMultiValue
                             label:@"Video resolutions"
                forUserDefaultsKey:@"VideoResolutions"
