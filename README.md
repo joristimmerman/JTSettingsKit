@@ -51,8 +51,8 @@ This example will create 2 sections with 1 setting each.
     if([key isEqualToString:@"VideoResolutions"]){
         // this setting uses the build in choice list editor. This editor requires key:label data.
         return @{@"high": @"High",
-                 @"med":@"Medium",
-                 @"low":@"Low"
+                 @"med": @"Medium",
+                 @"low": @"Low"
                  };
     }
     
