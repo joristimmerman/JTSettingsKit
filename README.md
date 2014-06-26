@@ -1,7 +1,8 @@
-JTSettingsKit
-=============
+JTSettingsKit (iOS)
+===================
 
-Settings kit to easily build custom settings views in an iOS app.
+Settings kit containing a skeleton to easily integrate settings in an iOS app.
+To make life a bit easier, some common settings types are integrated.
 
 Currently available settings types:
 - Switch
