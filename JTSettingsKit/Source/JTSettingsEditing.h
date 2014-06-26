@@ -15,4 +15,5 @@
 
 @property (nonatomic) NSDictionary *data;
 @property id<JTSettingsEditorDelegate> delegate;
+
 @end

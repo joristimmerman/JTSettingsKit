@@ -24,37 +24,15 @@
 // THE SOFTWARE.
 
 #import "JTSettingsEditing.h"
+#import "JTSettingsVisualizing.h"
 
-@protocol JTSettingsTableViewControllerDelegate;
-@interface JTSettingsTableViewController : UITableViewController
-@property id<JTSettingsTableViewControllerDelegate> delegate;
+@protocol JTSettingsVisualizerDelegate;
+@interface JTSettingsTableViewController : UITableViewController <JTSettingsVisualizing>
+
+@property id<JTSettingsVisualizerDelegate> delegate;
 
 -(void) reload;
 
--(void) reloadCellAt:(NSUInteger) cellIndex inGroupAt:(NSUInteger)group;
-
-@end
-
-@protocol JTSettingsTableViewControllerDelegate <NSObject>
-
--(NSUInteger) numberOfGroups;
-
--(NSUInteger) numberOfSettingsInGroupAt:(NSUInteger) index;
-
--(NSString *) settingKeyForSettingAt:(NSUInteger) index inGroupAt:(NSUInteger) group;
-
-@optional
--(NSString *) titleForGroupAt:(NSUInteger) index;
--(NSString *) footerForGroupAt:(NSUInteger) index;
-
--(UIViewController<JTSettingsEditing> *) editorForSettingWithKey:(NSString *) key inGroupAt:(NSUInteger) group;
-
--(BOOL) shouldSelectSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
--(NSString *) settingLabelForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
--(NSUInteger) settingTypeForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
--(id) selectedDataForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
--(NSString *) selectedDataDescriptionForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
-
--(void)cellValueChangedForSettingWithKey:(NSString *)key toValue:(id)value inGroupAt:(NSUInteger) group;
+-(void) reloadItemAt:(NSUInteger) index inGroupAt:(NSUInteger)group;
 
 @end

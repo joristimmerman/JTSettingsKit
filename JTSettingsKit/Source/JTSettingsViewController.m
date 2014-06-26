@@ -10,33 +10,45 @@
 #import "JTSettingsTableViewController.h"
 #import "JTSettingsCell.h"
 
-@interface JTSettingsViewController () <JTSettingsTableViewControllerDelegate,JTSettingsEditorDelegate>{
+@interface JTSettingsViewController () <JTSettingsVisualizerDelegate, JTSettingsEditorDelegate>{
 	NSMutableArray *_settingGroups;
-    JTSettingsTableViewController *settingsController;
+    UIViewController<JTSettingsVisualizing> *settingsController;
 }
 
 @end
 
 @implementation JTSettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+-(id) initWithSettingsVisualizerClass:(Class) settingsViewControllerClass {
+    self = [super init];
+    if(self){
+        if(settingsController != nil){
+            
+            if (![settingsViewControllerClass conformsToProtocol:@protocol(JTSettingsVisualizing)] ||
+                ![settingsViewControllerClass isSubclassOfClass:[UIViewController class]]) {
+                [NSException
+                 raise:@"Invalid class."
+                 format:@"Invalid class passed to init function, given class %@ is not a %@ and/or does not implement the protocol %@",
+                 NSStringFromClass(settingsViewControllerClass),
+                 NSStringFromClass([UIViewController class]),
+                 NSStringFromProtocol(@protocol(JTSettingsVisualizing))];
+            }
+            
+            settingsController = (UIViewController<JTSettingsVisualizing> *)[[settingsViewControllerClass alloc] init];
+        }else{
+            settingsController = [[JTSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        }
+        settingsController.delegate = self;
+        _autoStoreValuesInUserDefaults = NO;
+        [self addChildViewController:settingsController];
+
     }
     return self;
 }
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        settingsController = [[JTSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        settingsController.delegate = self;
-        _autoStoreValuesInUserDefaults = NO;
-        [self addChildViewController:settingsController];        
-    }
+    self = [self initWithSettingsVisualizerClass:nil];
     return self;
 }
 
@@ -239,7 +251,7 @@
     NSUInteger cellIndex = [group indexForKey:key];
     NSUInteger groupIndex = [_settingGroups indexOfObject:group];
     if(cellIndex != NSNotFound && groupIndex != NSNotFound){
-        [settingsController reloadCellAt:cellIndex inGroupAt:groupIndex];
+        [settingsController reloadItemAt:cellIndex inGroupAt:groupIndex];
     }
 }
 

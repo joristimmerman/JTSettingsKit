@@ -13,6 +13,8 @@
 
 @property BOOL autoStoreValuesInUserDefaults;
 
+-(id) initWithSettingsVisualizerClass:(Class) settingsViewControllerClass;
+
 - (void)addSettingsGroup:(JTSettingsGroup *)group;
 - (void)addSettingsGroup:(JTSettingsGroup *)group at:(NSUInteger)index;
 

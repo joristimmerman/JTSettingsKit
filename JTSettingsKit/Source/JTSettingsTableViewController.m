@@ -60,7 +60,7 @@
     [self.tableView reloadData];
 }
 
--(void) reloadCellAt:(NSUInteger) cellIndex inGroupAt:(NSUInteger)group {
+-(void) reloadItemAt:(NSUInteger) cellIndex inGroupAt:(NSUInteger)group {
     [self.tableView beginUpdates];
     NSIndexPath *cellIndexPath = [NSIndexPath indexPathForRow:cellIndex inSection:group];
     [self.tableView reloadRowsAtIndexPaths:@[cellIndexPath] withRowAnimation:UITableViewRowAnimationNone];
