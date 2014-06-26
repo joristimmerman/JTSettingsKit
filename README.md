@@ -4,10 +4,8 @@ JTSettingsKit
 Settings kit to easily build custom settings views in an iOS app.
 
 Currently available settings types:
- - Switch
- - Option list
-
- (More in development)
+- Switch
+- Choice list
 
 Usage example:
 --------------
