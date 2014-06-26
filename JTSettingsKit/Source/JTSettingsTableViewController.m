@@ -40,6 +40,14 @@
 
 @implementation JTSettingsTableViewController
 
+- (id)init
+{
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];

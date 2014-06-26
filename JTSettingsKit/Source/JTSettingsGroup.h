@@ -56,8 +56,8 @@ typedef NSUInteger JTSettingType;
 - (id)settingValueForSettingWithKey:(NSString *)key;
 - (NSString *)settingLabelForSettingWithKey:(NSString *)key;
 - (JTSettingType)settingTypeForSettingWithKey:(NSString *)key;
-- (UIViewController<JTSettingsEditing> *) editorForSettingWithKey:(NSString *) key;
-- (NSDictionary *) optionsForSettingWithKey:(NSString *) key;
+- (Class)editorClassForSettingWithKey:(NSString *) key;
+- (NSDictionary *) editorPropertiesForSettingWithKey:(NSString *) key;
 
 - (void)updateSettingValue:(id)value forSettingWithKey:(NSString *)key;
 - (void)updateSettingLabel:(NSString *)label forSettingWithKey:(NSString *)key;

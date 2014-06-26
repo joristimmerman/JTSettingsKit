@@ -106,10 +106,20 @@
         [_selectedItems addObject:key];
         
 		if ([self.delegate respondsToSelector:@selector(settingsEditorViewController:selectedValueChangedToValue:)]) {
-			[self.delegate settingsEditorViewController:self selectedValueChangedToValue:key];
+           
+            if(self.allowMultiSelection){
+                [self.delegate settingsEditorViewController:self
+                                selectedValueChangedToValue:[NSArray arrayWithArray:_selectedItems]];
+            }else{
+                [self.delegate settingsEditorViewController:self
+                                selectedValueChangedToValue:key];
+            }
+            
 		}
 
-		[self.navigationController popViewControllerAnimated:YES];
+        if(!self.allowMultiSelection){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
 	}
 }
 
