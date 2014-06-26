@@ -37,8 +37,14 @@
 @property NSString *label;
 @property NSDictionary *editorProperties;
 
-- (id)initWithType:(NSInteger)type label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value;
-- (id)initWithEditor:(UIViewController<JTSettingsEditing> *)editor label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value ;
+- (id)initWithType:(NSInteger)type label:(NSString *)label
+   userDefaultsKey:(NSString *)userDefaultsKey
+          andValue:(id)value;
+
+- (id)initWithEditor:(Class)editorClass
+               label:(NSString *)label
+     userDefaultsKey:(NSString *)userDefaultsKey
+            andValue:(id)value;
 @end
 
 @implementation Setting
@@ -148,13 +154,13 @@
 	[_options setObject:setting forKey:userDefaultsKey];
 }
 
--(void) addSettingWithEditor:(UIViewController<JTSettingsEditing> *)editor
+-(void) addSettingWithEditor:(Class) editorClass
                        label:(NSString *)label
           forUserDefaultsKey:(NSString *)userDefaultsKey
                    withValue:(id)value
                      options:(NSDictionary *)optionsOrNil {
    
-    Setting *setting = [[Setting alloc] initWithEditor:editor
+    Setting *setting = [[Setting alloc] initWithEditor:editorClass
                                                  label:label
                                      userDefaultsKey:userDefaultsKey
                                             andValue:value];

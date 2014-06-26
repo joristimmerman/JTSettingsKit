@@ -47,7 +47,7 @@ typedef NSUInteger JTSettingType;
                  withValue:(id)value
                    options:(NSDictionary *)optionsOrNil;
 
-- (void) addSettingWithEditor:(UIViewController<JTSettingsEditing> *)editor
+- (void) addSettingWithEditor:(Class) editorClass
                        label:(NSString *)label
           forUserDefaultsKey:(NSString *)userDefaultsKey
                    withValue:(id)value
