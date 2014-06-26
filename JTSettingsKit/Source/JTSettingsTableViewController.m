@@ -177,10 +177,10 @@
 #pragma mark - cell delegate
 - (void)settingsCell:(JTSettingsCell *)cell valueChangedForSettingWithKey:(NSString *)key toValue:(id)value {
     
-    if([self.delegate respondsToSelector:@selector(cellValueChangedForSettingWithKey:toValue:inGroupAt:)]){
+    if([self.delegate respondsToSelector:@selector(valueChangedForSettingWithKey:toValue:inGroupAt:)]){
         NSIndexPath *indexPathForCell = [self.tableView indexPathForCell:cell];
       
-        [self.delegate cellValueChangedForSettingWithKey:key
+        [self.delegate valueChangedForSettingWithKey:key
                                                  toValue:value
                                                inGroupAt:indexPathForCell.section];
     }

@@ -216,7 +216,7 @@
 	return (JTSettingsGroup *)[_settingGroups objectAtIndex:groupIndex];
 }
 
--(void)cellValueChangedForSettingWithKey:(NSString *)key toValue:(id)value inGroupAt:(NSUInteger)groupIndex {
+-(void)valueChangedForSettingWithKey:(NSString *)key toValue:(id)value inGroupAt:(NSUInteger)groupIndex {
     JTSettingsGroup *group = [self groupAtIndex:groupIndex];
     [self updateSettingWithKey:key inGroup:group toValue:value];
 }
