@@ -29,7 +29,6 @@
 - (void)setFooter:(NSString *)title
        forGroupAt:(NSUInteger)index;
 
-
 @end
 
 @class JTSettingsTableViewController;

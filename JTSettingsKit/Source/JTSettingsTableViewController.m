@@ -35,8 +35,6 @@
 #define kCellIdentifierDefaultCell @"Cell"
 
 @interface JTSettingsTableViewController () <JTSettingsCellDelegate>
-{
-}
 
 @end
 
@@ -61,6 +59,11 @@
 -(void) reload {
     [self.tableView reloadData];
 }
+
+-(void) reloadCellForKey:(NSString *) key {
+    
+}
+
 
 #pragma mark - Table view data source
 
@@ -171,6 +174,14 @@
 
 #pragma mark - cell delegate
 - (void)settingsCell:(JTSettingsCell *)cell valueChangedForSettingWithKey:(NSString *)key toValue:(id)value {
+    
+    if([self.delegate respondsToSelector:@selector(cellValueChangedForSettingWithKey:toValue:inGroupAt:)]){
+        NSIndexPath *indexPathForCell = [self.tableView indexPathForCell:cell];
+      
+        [self.delegate cellValueChangedForSettingWithKey:key
+                                                 toValue:(id)value
+                                               inGroupAt:indexPathForCell.section];
+    }
     
 }
 @end

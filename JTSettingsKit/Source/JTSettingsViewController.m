@@ -11,10 +11,8 @@
 #import "JTSettingsCell.h"
 
 @interface JTSettingsViewController () <JTSettingsTableViewControllerDelegate,JTSettingsEditorDelegate>{
-    
 	NSMutableArray *_settingGroups;
     JTSettingsTableViewController *settingsController;
-    
 }
 
 @end
@@ -29,7 +27,6 @@
     }
     return self;
 }
-
 
 - (id)init
 {
@@ -60,7 +57,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)addSettingsGroup:(JTSettingsGroup *)group {
@@ -208,29 +204,40 @@
 	return (JTSettingsGroup *)[_settingGroups objectAtIndex:groupIndex];
 }
 
+-(void)cellValueChangedForSettingWithKey:(NSString *)key toValue:(id)value inGroupAt:(NSUInteger)groupIndex {
+    JTSettingsGroup *group = [self groupAtIndex:groupIndex];
+    [self updateSettingWithKey:key inGroup:group toValue:value];
+}
+
 #pragma mark - SettingsOptionsViewControllerDelegate
 - (void)settingsEditorViewController:(UIViewController<JTSettingsEditing> *) viewController selectedValueChangedToValue:(id)value {
 
-    [viewController.settingsGroup updateSettingValue:value
-                                   forSettingWithKey:viewController.settingsKey];
+    [self updateSettingWithKey:viewController.settingsKey
+                       inGroup:viewController.settingsGroup
+                       toValue:value];
+    
+}
+
+- (void)updateSettingWithKey:(NSString *)key inGroup:(JTSettingsGroup*)group toValue:(id)value {
+    [group updateSettingValue:value forSettingWithKey:key];
     
     if (self.autoStoreValuesInUserDefaults) {
-		JTSettingsGroup *group = viewController.settingsGroup;
-		JTSettingType settingType = [group settingTypeForSettingWithKey:viewController.settingsKey];
+		JTSettingType settingType = [group settingTypeForSettingWithKey:key];
 		switch (settingType) {
 			case JTSettingTypeSwitch:
-				[[NSUserDefaults standardUserDefaults] setBool:[(NSNumber *)value boolValue] forKey:viewController.settingsKey];
+				[[NSUserDefaults standardUserDefaults] setBool:[(NSNumber *)value boolValue] forKey:key];
 				break;
                 
 			default:
-				[[NSUserDefaults standardUserDefaults] setValue:value forKey:viewController.settingsKey];
+				[[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
 				break;
 		}
         
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
-    
-    [settingsController reload];    
+
+    [settingsController reload];
 }
+
 
 @end

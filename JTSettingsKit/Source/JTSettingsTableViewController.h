@@ -30,6 +30,8 @@
 @property id<JTSettingsTableViewControllerDelegate> delegate;
 
 -(void) reload;
+-(void) reloadCellForKey:(NSString *) key;
+
 @end
 
 @protocol JTSettingsTableViewControllerDelegate <NSObject>
@@ -51,5 +53,7 @@
 -(NSUInteger) settingTypeForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
 -(id) selectedDataForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
 -(NSString *) selectedDataDescriptionForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) group;
+
+-(void)cellValueChangedForSettingWithKey:(NSString *)key toValue:(id)value inGroupAt:(NSUInteger) group;
 
 @end
