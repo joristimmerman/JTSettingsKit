@@ -60,10 +60,12 @@
     [self.tableView reloadData];
 }
 
--(void) reloadCellForKey:(NSString *) key {
-    
+-(void) reloadCellAt:(NSUInteger) cellIndex inGroupAt:(NSUInteger)group {
+    [self.tableView beginUpdates];
+    NSIndexPath *cellIndexPath = [NSIndexPath indexPathForRow:cellIndex inSection:group];
+    [self.tableView reloadRowsAtIndexPaths:@[cellIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
 }
-
 
 #pragma mark - Table view data source
 
@@ -179,7 +181,7 @@
         NSIndexPath *indexPathForCell = [self.tableView indexPathForCell:cell];
       
         [self.delegate cellValueChangedForSettingWithKey:key
-                                                 toValue:(id)value
+                                                 toValue:value
                                                inGroupAt:indexPathForCell.section];
     }
     

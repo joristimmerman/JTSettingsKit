@@ -30,7 +30,8 @@
 @property id<JTSettingsTableViewControllerDelegate> delegate;
 
 -(void) reload;
--(void) reloadCellForKey:(NSString *) key;
+
+-(void) reloadCellAt:(NSUInteger) cellIndex inGroupAt:(NSUInteger)group;
 
 @end
 

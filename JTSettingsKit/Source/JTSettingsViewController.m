@@ -236,7 +236,11 @@
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
 
-    [settingsController reload];
+    NSUInteger cellIndex = [group indexForKey:key];
+    NSUInteger groupIndex = [_settingGroups indexOfObject:group];
+    if(cellIndex != NSNotFound && groupIndex != NSNotFound){
+        [settingsController reloadCellAt:cellIndex inGroupAt:groupIndex];
+    }
 }
 
 
