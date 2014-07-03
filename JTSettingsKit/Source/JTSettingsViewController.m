@@ -261,6 +261,10 @@
     if(cellIndex != NSNotFound && groupIndex != NSNotFound){
         [settingsController reloadItemAt:cellIndex inGroupAt:groupIndex];
     }
+    
+    if([self.settingDelegate respondsToSelector:@selector(settingsViewController:valueChangedForSettingWithKey:toValue:)]){
+        [self.settingDelegate settingsViewController:self valueChangedForSettingWithKey:key toValue:value];
+    }
 }
 
 
