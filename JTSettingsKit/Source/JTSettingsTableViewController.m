@@ -27,7 +27,6 @@
 #import "JTSettingsCell.h"
 #import "JTSettingsSwitchCell.h"
 #import "JTSettingsChoiceCell.h"
-#import "JTSettingsChoicesViewController.h"
 #import "JTSettingsGroup.h"
 
 #define kCellIdentifierSwitchCell @"SwitchCell"

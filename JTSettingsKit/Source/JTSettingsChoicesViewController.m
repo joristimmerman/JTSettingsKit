@@ -35,9 +35,8 @@
 @implementation JTSettingsChoicesViewController
 - (id)init
 {
-    self = [super init];
+    self = [self initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     }
     return self;
 }
@@ -121,6 +120,10 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
 	}
+}
+
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.title;
 }
 
 - (NSString *)textForCellIndex:(NSIndexPath *)indexPath {

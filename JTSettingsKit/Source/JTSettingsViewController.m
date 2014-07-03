@@ -160,6 +160,7 @@
         
         UIViewController<JTSettingsEditing> *editor = [[editorClass alloc] init];
         
+        editor.title = [group settingLabelForSettingWithKey:key];
         editor.settingsGroup = group;
         editor.settingsKey = key;
         

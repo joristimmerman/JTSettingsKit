@@ -78,7 +78,6 @@
             case JTSettingTypeChoice:
             case JTSettingTypeMultiChoice:
                 self.editorClass = [JTSettingsChoicesViewController class];
-                
                 self.editorProperties = @{@"allowMultiSelection":[NSNumber numberWithBool:(type==JTSettingTypeMultiChoice)?YES:NO]};
         }
 
