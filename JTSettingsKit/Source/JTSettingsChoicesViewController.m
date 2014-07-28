@@ -87,8 +87,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSUInteger count = [self.data.allKeys count];
-	return count;
+	return [self.data.allKeys count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -131,11 +130,11 @@
     return key ? [self.data objectForKey:key] : nil;
 }
 
-- (void)selectRowWithKey:(NSObject *)key {
+- (void)selectRowWithKey:(id)key {
 	NSInteger index = -1;
 
     NSUInteger c=0;
-    for(NSObject *keyInData in [_data allKeys]){
+    for(id keyInData in [_data allKeys]){
         if([key isEqual:keyInData]){
             index=c;
             break;

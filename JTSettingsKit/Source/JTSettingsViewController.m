@@ -63,8 +63,7 @@
 	}
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
@@ -96,6 +95,17 @@
     
     
 	[settingsController reload];
+}
+
+- (void) reloadSettingForKey:(NSString *)key
+                   inGroupAt:(NSUInteger) groupIndex {
+    JTSettingsGroup *grp = [_settingGroups objectAtIndex:groupIndex];
+    if (grp) {
+        NSUInteger index = [grp indexForKey:key];
+        if(index != NSNotFound){
+            [settingsController reloadItemAt:index inGroupAt:groupIndex];
+        }
+    }
 }
 
 #pragma mark - table delegate 
@@ -169,7 +179,7 @@
             editorData = [self.settingDelegate settingsViewController:self dataForSettingEditorDataForSettingKey:key];
         }
         editor.data = editorData;
-        editor.selectedValue = [group settingValueForSettingWithKey:key];
+        editor.selectedValue = [NSString stringWithFormat:@"%@",[group settingValueForSettingWithKey:key]];
         
         editor.delegate = self;
         

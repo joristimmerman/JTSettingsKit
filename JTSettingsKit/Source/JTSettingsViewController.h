@@ -26,21 +26,25 @@
                    options:(NSDictionary *)optionsOrNil;
 
 - (void)setTitle:(NSString *)title
-      forGroupAt:(NSUInteger)index;
+      forGroupAt:(NSUInteger)groupIndex;
 
 - (void)setFooter:(NSString *)title
-       forGroupAt:(NSUInteger)index;
+       forGroupAt:(NSUInteger)groupIndex;
+
+- (void) reloadSettingForKey:(NSString *)key
+                   inGroupAt:(NSUInteger) groupIndex;
 
 @end
 
-@class JTSettingsTableViewController;
 @protocol JTSettingsViewControllerDelegate <NSObject>
 
 @optional
 
-- (void)settingsViewController:(JTSettingsViewController *)settingsViewController valueChangedForSettingWithKey:(NSString *)key toValue:(id)value;
+- (void)settingsViewController:(JTSettingsViewController *)settingsViewController
+ valueChangedForSettingWithKey:(NSString *)key toValue:(id)value;
 
-- (NSString *)descriptionForValue:(id)value forKey:(NSString *)key;
+- (NSString *)descriptionForValue:(id)value
+                           forKey:(NSString *)key;
 
 - (NSDictionary *)settingsViewController:(JTSettingsViewController *)settingsViewController dataForSettingEditorDataForSettingKey:(NSString *)key;
 @end
