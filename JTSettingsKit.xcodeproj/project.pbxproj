@@ -28,9 +28,9 @@
 		A93988C8195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A93988C7195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9398943195AED7C00A0DF03 /* JTSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9398941195AED7C00A0DF03 /* JTSettingsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9398944195AED7C00A0DF03 /* JTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9398942195AED7C00A0DF03 /* JTSettingsViewController.m */; };
-		A93A02BA198A72F9003F5AEC /* JTSettingsCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A93A02B8198A72F9003F5AEC /* JTSettingsCustomViewCell.h */; };
-		A93A02BB198A72F9003F5AEC /* JTSettingsCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A93A02B9198A72F9003F5AEC /* JTSettingsCustomViewCell.m */; };
 		A9C05A97195C6C8400B5E667 /* JTSettingsVisualizing.h in Headers */ = {isa = PBXBuildFile; fileRef = A9C05A96195C6C8400B5E667 /* JTSettingsVisualizing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9D5985A19AF4A65001C406F /* JTSettingsCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A9D5985819AF4A65001C406F /* JTSettingsCustomViewCell.h */; };
+		A9D5985B19AF4A65001C406F /* JTSettingsCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D5985919AF4A65001C406F /* JTSettingsCustomViewCell.m */; };
 		A9EBE6111959A6D100FF85A7 /* JTSettingsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9EBE6101959A6D100FF85A7 /* JTSettingsTableViewController.h */; };
 		A9EBE6131959B56D00FF85A7 /* JTSettingsGroupSettingDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */; };
 		A9F13DA819597A830002272B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F13DA719597A830002272B /* Foundation.framework */; };
@@ -75,10 +75,10 @@
 		A93988C7195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsEditorDelegate.h; path = Source/JTSettingsEditorDelegate.h; sourceTree = "<group>"; };
 		A9398941195AED7C00A0DF03 /* JTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsViewController.h; path = Source/JTSettingsViewController.h; sourceTree = "<group>"; };
 		A9398942195AED7C00A0DF03 /* JTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsViewController.m; path = Source/JTSettingsViewController.m; sourceTree = "<group>"; };
-		A93A02B8198A72F9003F5AEC /* JTSettingsCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsCustomViewCell.h; sourceTree = "<group>"; };
-		A93A02B9198A72F9003F5AEC /* JTSettingsCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSettingsCustomViewCell.m; sourceTree = "<group>"; };
 		A97674FB1959CA25009CD655 /* JTSettingsEditing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JTSettingsEditing.h; path = Source/JTSettingsEditing.h; sourceTree = "<group>"; };
 		A9C05A96195C6C8400B5E667 /* JTSettingsVisualizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsVisualizing.h; path = Source/JTSettingsVisualizing.h; sourceTree = "<group>"; };
+		A9D5985819AF4A65001C406F /* JTSettingsCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsCustomViewCell.h; path = Source/JTSettingsCustomViewCell.h; sourceTree = "<group>"; };
+		A9D5985919AF4A65001C406F /* JTSettingsCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsCustomViewCell.m; path = Source/JTSettingsCustomViewCell.m; sourceTree = "<group>"; };
 		A9EBE6101959A6D100FF85A7 /* JTSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsTableViewController.h; path = Source/JTSettingsTableViewController.h; sourceTree = "<group>"; };
 		A9F13DA419597A830002272B /* libJTSettingsKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJTSettingsKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F13DA719597A830002272B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -146,14 +146,14 @@
 		A9EBE60E195997C000FF85A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A9D5985819AF4A65001C406F /* JTSettingsCustomViewCell.h */,
+				A9D5985919AF4A65001C406F /* JTSettingsCustomViewCell.m */,
 				A9F13DCD19597AE60002272B /* JTSettingsCell.h */,
 				A9F13DCE19597AE60002272B /* JTSettingsCell.m */,
 				A9F13DD619597AE60002272B /* JTSettingsChoiceCell.h */,
 				A9F13DD719597AE60002272B /* JTSettingsChoiceCell.m */,
 				A9F13DDA19597AE60002272B /* JTSettingsSwitchCell.h */,
 				A9F13DDB19597AE60002272B /* JTSettingsSwitchCell.m */,
-				A93A02B8198A72F9003F5AEC /* JTSettingsCustomViewCell.h */,
-				A93A02B9198A72F9003F5AEC /* JTSettingsCustomViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -242,6 +242,7 @@
 				A9398943195AED7C00A0DF03 /* JTSettingsViewController.h in Headers */,
 				A93988C6195ACCF700A0DF03 /* JTSettingsEditing.h in Headers */,
 				A9C05A97195C6C8400B5E667 /* JTSettingsVisualizing.h in Headers */,
+				A9D5985A19AF4A65001C406F /* JTSettingsCustomViewCell.h in Headers */,
 				A93988C4195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.h in Headers */,
 				A93988C8195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h in Headers */,
 				A9EBE6111959A6D100FF85A7 /* JTSettingsTableViewController.h in Headers */,
@@ -249,7 +250,6 @@
 				A9F13E6819598EB00002272B /* JTSettingsChoicesViewController.h in Headers */,
 				A9F13E6719598EB00002272B /* JTSettingsChoiceCell.h in Headers */,
 				A9F13E6419598EB00002272B /* JTSettingsCell.h in Headers */,
-				A93A02BA198A72F9003F5AEC /* JTSettingsCustomViewCell.h in Headers */,
 				A9F13E6919598EB00002272B /* JTSettingsSwitchCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,9 +371,9 @@
 				A9F13DE119597AE60002272B /* JTSettingsGroup.m in Sources */,
 				A9F13DDE19597AE60002272B /* JTSettingsCell.m in Sources */,
 				A9398944195AED7C00A0DF03 /* JTSettingsViewController.m in Sources */,
-				A93A02BB198A72F9003F5AEC /* JTSettingsCustomViewCell.m in Sources */,
 				A9F13DE519597AE60002272B /* JTSettingsSwitchCell.m in Sources */,
 				A9F13DE219597AE60002272B /* JTSettingsGroupSettingDictionary.m in Sources */,
+				A9D5985B19AF4A65001C406F /* JTSettingsCustomViewCell.m in Sources */,
 				A9F13DE419597AE60002272B /* JTSettingsChoicesViewController.m in Sources */,
 				A9F13DE319597AE60002272B /* JTSettingsChoiceCell.m in Sources */,
 				A9F13DE619597AE60002272B /* JTSettingsTableViewController.m in Sources */,
