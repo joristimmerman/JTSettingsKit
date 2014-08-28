@@ -28,23 +28,27 @@
 @implementation JTSettingsCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-	if (self) {
-		[self setSelectionStyle:UITableViewCellSelectionStyleDefault];
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	return self;
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+    [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _enabled = YES;
+  }
+  return self;
 }
 
 - (void)setLabel:(NSString *)label {
-	_label = label;
-	self.textLabel.text = label;
+  _label = label;
+  self.textLabel.text = label;
 }
 
 - (void)dispatchValueChanged {
-	if ([self.delegate respondsToSelector:@selector(settingsCell:valueChangedForSettingWithKey:toValue:)]) {
-		[self.delegate settingsCell:self valueChangedForSettingWithKey:self.key toValue:self.selectedValue];
-	}
+  if ([self.delegate
+          respondsToSelector:@selector(settingsCell:valueChangedForSettingWithKey:toValue:)]) {
+    [self.delegate settingsCell:self
+        valueChangedForSettingWithKey:self.key
+                              toValue:self.selectedValue];
+  }
 }
 
 @end

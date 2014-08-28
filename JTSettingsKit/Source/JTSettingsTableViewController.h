@@ -27,12 +27,12 @@
 #import "JTSettingsVisualizing.h"
 
 @protocol JTSettingsVisualizerDelegate;
-@interface JTSettingsTableViewController : UITableViewController <JTSettingsVisualizing>
+@interface JTSettingsTableViewController : UITableViewController<JTSettingsVisualizing>
 
 @property id<JTSettingsVisualizerDelegate> delegate;
 
--(void) reload;
+- (void)reload;
 
--(void) reloadItemAt:(NSUInteger) index inGroupAt:(NSUInteger)group;
+- (void)reloadItemAt:(NSUInteger)index inGroupAt:(NSUInteger)group;
 
 @end

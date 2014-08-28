@@ -30,75 +30,98 @@
 #pragma mark -Internal class
 @interface Setting : NSObject
 
-@property (nonatomic) Class editorClass;
+@property(nonatomic) Class editorClass;
 @property NSUInteger type;
 @property NSString *userDefaultsKey;
 @property id value;
 @property NSString *label;
 @property NSDictionary *editorProperties;
+@property BOOL enabled;
 
-- (id)initWithType:(NSInteger)type label:(NSString *)label
-   userDefaultsKey:(NSString *)userDefaultsKey
-          andValue:(id)value;
+- (id)initWithType:(NSInteger)type
+              label:(NSString *)label
+    userDefaultsKey:(NSString *)userDefaultsKey
+           andValue:(id)value;
 
 - (id)initWithEditor:(Class)editorClass
                label:(NSString *)label
      userDefaultsKey:(NSString *)userDefaultsKey
             andValue:(id)value;
+
+- (id)initWithSettingControl:(UIView *)control;
+
 @end
 
 @implementation Setting
 
+- (void)setEditorClass:(Class)editorClass {
+  if (editorClass != nil) {
+    if (![editorClass isSubclassOfClass:[UIViewController class]] ||
+        ![editorClass conformsToProtocol:@protocol(JTSettingsEditing)]) {
+      [NSException
+           raise:@"Invalid class"
+          format:@"Class %@ must be a subclass of %@ and implement %@",
+                 NSStringFromClass(editorClass), NSStringFromClass([UIViewController class]),
+                 NSStringFromProtocol(@protocol(JTSettingsEditing))];
 
--(void) setEditorClass:(Class)editorClass{
-    
-    if(editorClass!=nil){
-        if(![editorClass isSubclassOfClass:[UIViewController class]] ||
-           ![editorClass conformsToProtocol:@protocol(JTSettingsEditing)]){
-            
-            [NSException raise:@"Invalid class" format:@"Class %@ must be a subclass of %@ and implement %@",
-             NSStringFromClass(editorClass),
-             NSStringFromClass([UIViewController class]),
-             NSStringFromProtocol(@protocol(JTSettingsEditing))
-             ];
-            
-            _editorClass = nil;
-        }
-        
+      _editorClass = nil;
     }
-    
-    _editorClass = editorClass;
+  }
+
+  _editorClass = editorClass;
 }
 
-- (id)initWithType:(NSInteger)type label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value {
-	self = [self init];
-	if (self) {
-        
-        switch(type){
-            case JTSettingTypeChoice:
-            case JTSettingTypeMultiChoice:
-                self.editorClass = [JTSettingsChoicesViewController class];
-                self.editorProperties = @{@"allowMultiSelection":[NSNumber numberWithBool:(type==JTSettingTypeMultiChoice)?YES:NO]};
-        }
+- (id)initWithType:(NSInteger)type
+              label:(NSString *)label
+    userDefaultsKey:(NSString *)userDefaultsKey
+           andValue:(id)value {
+  self = [self init];
+  if (self) {
+    switch (type) {
+      case JTSettingTypeChoice:
+      case JTSettingTypeMultiChoice:
+        self.editorClass = [JTSettingsChoicesViewController class];
+        self.editorProperties = @{
+          @"allowMultiSelection" :
+              [NSNumber numberWithBool:(type == JTSettingTypeMultiChoice) ? YES : NO]
+              };
+    }
 
-		self.label = label;
-		self.type = type;
-		self.userDefaultsKey = userDefaultsKey;
-		self.value = value;
-	}
-	return self;
+    self.label = label;
+    self.type = type;
+    self.userDefaultsKey = userDefaultsKey;
+    self.value = value;
+    self.enabled = YES;
+  }
+  return self;
 }
 
-- (id)initWithEditor:(Class)editorClass label:(NSString *)label userDefaultsKey:(NSString *)userDefaultsKey andValue:(id)value {
-	self = [self init];
-	if (self) {
-        self.type= JTSettingTypeCustom;
-		self.label = label;
-		self.editorClass = editorClass;
-		self.userDefaultsKey = userDefaultsKey;
-		self.value = value;
-	}
-	return self;
+- (id)initWithSettingControl:(UIView *)control {
+  self = [self init];
+  if (self) {
+    self.label = nil;
+    self.type = JTSettingTypeCustom;
+    self.userDefaultsKey = nil;
+    self.value = control;
+    self.enabled = YES;
+  }
+  return self;
+}
+
+- (id)initWithEditor:(Class)editorClass
+               label:(NSString *)label
+     userDefaultsKey:(NSString *)userDefaultsKey
+            andValue:(id)value {
+  self = [self init];
+  if (self) {
+    self.type = JTSettingTypeCustom;
+    self.label = label;
+    self.editorClass = editorClass;
+    self.userDefaultsKey = userDefaultsKey;
+    self.value = value;
+    self.enabled = YES;
+  }
+  return self;
 }
 
 @end
@@ -106,33 +129,33 @@
 #pragma mark -SettingsGroup class
 
 @interface JTSettingsGroup () {
-	JTSettingsGroupSettingDictionary *_options;
+  JTSettingsGroupSettingDictionary *_options;
 }
 
 @end
 @implementation JTSettingsGroup
 
 - (id)init {
-	self = [super init];
-	if (self) {
-		_options = [JTSettingsGroupSettingDictionary dictionary];
-	}
-	return self;
+  self = [super init];
+  if (self) {
+    _options = [JTSettingsGroupSettingDictionary dictionary];
+  }
+  return self;
 }
 
 - (id)initWithTitle:(NSString *)title {
-	self = [self init];
-	if (self) {
-		self.title = title;
-	}
-	return self;
+  self = [self init];
+  if (self) {
+    self.title = title;
+  }
+  return self;
 }
 
 - (NSUInteger)count {
-	if (!_options) {
-		return 0;
-	}
-	return _options.allKeys.count;
+  if (!_options) {
+    return 0;
+  }
+  return _options.allKeys.count;
 }
 
 - (void)addSettingWithType:(JTSettingType)settingType
@@ -140,89 +163,105 @@
         forUserDefaultsKey:(NSString *)userDefaultsKey
                  withValue:(id)value
                    options:(NSDictionary *)optionsOrNil {
-    
-	Setting *setting = [[Setting alloc] initWithType:settingType
-                                               label:label
-                                     userDefaultsKey:userDefaultsKey
-                                            andValue:value];
-    
-    if(optionsOrNil){
-        setting.editorProperties = optionsOrNil;
-    }
+  Setting *setting = [[Setting alloc] initWithType:settingType
+                                             label:label
+                                   userDefaultsKey:userDefaultsKey
+                                          andValue:value];
 
-	[_options setObject:setting forKey:userDefaultsKey];
+  if (optionsOrNil) {
+    setting.editorProperties = optionsOrNil;
+  }
+
+  [_options setObject:setting forKey:userDefaultsKey];
 }
 
--(void) addSettingWithEditor:(Class) editorClass
+- (void)addSettingWithEditor:(Class)editorClass
                        label:(NSString *)label
           forUserDefaultsKey:(NSString *)userDefaultsKey
                    withValue:(id)value
                      options:(NSDictionary *)optionsOrNil {
-   
-    Setting *setting = [[Setting alloc] initWithEditor:editorClass
-                                                 label:label
+  Setting *setting = [[Setting alloc] initWithEditor:editorClass
+                                               label:label
                                      userDefaultsKey:userDefaultsKey
                                             andValue:value];
-    setting.editorProperties = optionsOrNil;
-    [_options setObject:setting forKey:userDefaultsKey];
+  setting.editorProperties = optionsOrNil;
+  [_options setObject:setting forKey:userDefaultsKey];
+}
+
+- (void)addSettingWithControl:(UIView *)control {
+  Setting *setting = [[Setting alloc] initWithSettingControl:control];
+  setting.editorProperties = nil;
+  [_options setObject:setting
+               forKey:[NSString stringWithFormat:@"Contrl%lu",
+                                                 (unsigned long)[[_options allKeys] count]]];
 }
 
 - (id)settingValueForSettingWithKey:(NSString *)key {
-	Setting *setting = [_options objectForKey:key];
-	return setting.value;
+  Setting *setting = [_options objectForKey:key];
+  return setting.value;
 }
 
 - (NSString *)settingLabelForSettingWithKey:(NSString *)key {
-	Setting *setting = [_options objectForKey:key];
-	return setting.label;
+  Setting *setting = [_options objectForKey:key];
+  return setting.label;
 }
 
-- (Class) editorClassForSettingWithKey:(NSString *)key{
-    Setting *setting = [_options objectForKey:key];
-	return setting.editorClass;
+- (Class)editorClassForSettingWithKey:(NSString *)key {
+  Setting *setting = [_options objectForKey:key];
+  return setting.editorClass;
 }
 
-- (NSDictionary *) editorPropertiesForSettingWithKey:(NSString *) key {
-    Setting *setting = [_options objectForKey:key];
-	return setting.editorProperties;
+- (NSDictionary *)editorPropertiesForSettingWithKey:(NSString *)key {
+  Setting *setting = [_options objectForKey:key];
+  return setting.editorProperties;
 }
 
 - (JTSettingType)settingTypeForSettingWithKey:(NSString *)key {
-	Setting *setting = [_options objectForKey:key];
-	return setting.type;
+  Setting *setting = [_options objectForKey:key];
+  return setting.type;
 }
 
 - (void)updateSettingValue:(id)value forSettingWithKey:(NSString *)key {
-	Setting *setting = [_options objectForKey:key];
-	setting.value = value;
+  Setting *setting = [_options objectForKey:key];
+  setting.value = value;
 }
 
 - (void)updateSettingLabel:(NSString *)label forSettingWithKey:(NSString *)key {
-	Setting *setting = [_options objectForKey:key];
-	setting.label = label;
+  Setting *setting = [_options objectForKey:key];
+  setting.label = label;
 }
 
 - (void)updateSettingType:(JTSettingType)type forSettingWithKey:(NSString *)key {
-	Setting *setting = [_options objectForKey:key];
-	setting.type = type;
+  Setting *setting = [_options objectForKey:key];
+  setting.type = type;
+}
+
+- (void)setSettingWithKey:(NSString *)key enabled:(BOOL) enabled {
+  Setting *setting =[_options objectForKey:key];
+  setting.enabled = enabled;
 }
 
 - (NSString *)keyOfSettingAt:(NSUInteger)index {
-	NSString *key = [[_options allKeys] objectAtIndex:index];
-	return key;
+  NSString *key = [[_options allKeys] objectAtIndex:index];
+  return key;
 }
 
-- (BOOL) hasEditorForSettingWithKey:(NSString *) key{
-    Setting *setting = [_options objectForKey:key];
-    return (setting.editorClass != nil);
+- (BOOL) settingWithKeyIsEnabled:(NSString *) key {
+  Setting *setting =[_options objectForKey:key];
+  return setting.enabled;
+}
+
+- (BOOL)hasEditorForSettingWithKey:(NSString *)key {
+  Setting *setting = [_options objectForKey:key];
+  return (setting.editorClass != nil);
 }
 
 - (BOOL)hasKey:(NSString *)key {
-	return ([_options objectForKey:key] != nil);
+  return ([_options objectForKey:key] != nil);
 }
 
 - (NSUInteger)indexForKey:(NSString *)key {
-	return [[_options allKeys] indexOfObject:key];
+  return [[_options allKeys] indexOfObject:key];
 }
 
 @end

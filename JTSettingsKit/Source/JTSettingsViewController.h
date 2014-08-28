@@ -7,44 +7,40 @@
 //
 #import "JTSettingsGroup.h"
 
-@protocol  JTSettingsViewControllerDelegate;
+@protocol JTSettingsViewControllerDelegate;
 @interface JTSettingsViewController : UINavigationController
-@property id <JTSettingsViewControllerDelegate> settingDelegate;
+@property id<JTSettingsViewControllerDelegate> settingDelegate;
 
 @property BOOL autoStoreValuesInUserDefaults;
 
--(id) initWithSettingsVisualizerClass:(Class) settingsViewControllerClass;
+- (id)initWithSettingsVisualizerClass:(Class)settingsViewControllerClass;
+
+- (NSUInteger) numSettingsGroups;
 
 - (void)addSettingsGroup:(JTSettingsGroup *)group;
 - (void)addSettingsGroup:(JTSettingsGroup *)group at:(NSUInteger)index;
+- (void)removeSettingsGroup:(JTSettingsGroup *)group;
 
-- (void)addSettingWithType:(JTSettingType)settingType
-                   toGroup:(JTSettingsGroup *)group
-                 withLabel:(NSString *)label
-                    forKey:(NSString *)key
-                 withValue:(id)value
-                   options:(NSDictionary *)optionsOrNil;
+- (JTSettingsGroup *) settingsGroupAtIndex:(NSUInteger) index;
 
-- (void)setTitle:(NSString *)title
-      forGroupAt:(NSUInteger)groupIndex;
+- (void)setTitle:(NSString *)title forGroupAt:(NSUInteger)groupIndex;
 
-- (void)setFooter:(NSString *)title
-       forGroupAt:(NSUInteger)groupIndex;
+- (void)setFooter:(NSString *)title forGroupAt:(NSUInteger)groupIndex;
 
-- (void) reloadSettingForKey:(NSString *)key
-                   inGroupAt:(NSUInteger) groupIndex;
+- (void)reloadSettingForKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex;
 
 @end
 
-@protocol JTSettingsViewControllerDelegate <NSObject>
+@protocol JTSettingsViewControllerDelegate<NSObject>
 
 @optional
 
 - (void)settingsViewController:(JTSettingsViewController *)settingsViewController
- valueChangedForSettingWithKey:(NSString *)key toValue:(id)value;
+    valueChangedForSettingWithKey:(NSString *)key
+                          toValue:(id)value;
 
-- (NSString *)descriptionForValue:(id)value
-                           forKey:(NSString *)key;
+- (NSString *)descriptionForValue:(id)value forKey:(NSString *)key;
 
-- (NSDictionary *)settingsViewController:(JTSettingsViewController *)settingsViewController dataForSettingEditorDataForSettingKey:(NSString *)key;
+- (NSDictionary *)settingsViewController:(JTSettingsViewController *)settingsViewController
+    dataForSettingEditorDataForSettingKey:(NSString *)key;
 @end

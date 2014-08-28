@@ -25,39 +25,46 @@
 
 #import "JTSettingsSwitchCell.h"
 
-@interface JTSettingsSwitchCell ()
-{
-	UISwitch *switchControl;
+@interface JTSettingsSwitchCell () {
+  UISwitch *switchControl;
 }
 @end
 
 @implementation JTSettingsSwitchCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-	if (self) {
-		switchControl = [[UISwitch alloc] initWithFrame:CGRectZero];
-        self.accessoryType = UITableViewCellAccessoryNone;
-        
-		self.accessoryView = switchControl;
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+    switchControl = [[UISwitch alloc] initWithFrame:CGRectZero];
+    self.accessoryType = UITableViewCellAccessoryNone;
 
-		[switchControl addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-	}
-	return self;
+    self.accessoryView = switchControl;
+
+    [switchControl addTarget:self
+                      action:@selector(switchChanged:)
+            forControlEvents:UIControlEventValueChanged];
+  }
+  return self;
 }
 
-- (void)setSelectedValue:(id)value{
-	BOOL boolval = [value boolValue];
-	switchControl.on = boolval;
+-(void) setEnabled:(BOOL)enabled
+{
+  super.enabled = enabled;
+  switchControl.enabled = enabled;
+}
+
+- (void)setSelectedValue:(id)value {
+  BOOL boolval = [value boolValue];
+  switchControl.on = boolval;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-	[super setSelected:false animated:false];
+  [super setSelected:false animated:false];
 }
 
 - (void)switchChanged:(UISwitch *)sender {
-	[super setSelectedValue:[NSNumber numberWithBool:sender.on]];
-	[self dispatchValueChanged];
+  [super setSelectedValue:[NSNumber numberWithBool:sender.on]];
+  [self dispatchValueChanged];
 }
 
 @end

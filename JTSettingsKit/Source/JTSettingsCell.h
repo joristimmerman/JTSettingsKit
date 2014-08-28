@@ -28,17 +28,20 @@
 
 @property NSString *key;
 @property (nonatomic) id selectedValue;
+@property (nonatomic) BOOL enabled;
 
 @property (nonatomic) NSString *label;
 
-@property id <JTSettingsCellDelegate> delegate;
+@property id<JTSettingsCellDelegate> delegate;
 
 - (void)dispatchValueChanged;
 
 @end
 
-@protocol JTSettingsCellDelegate <NSObject>
+@protocol JTSettingsCellDelegate<NSObject>
 
 @optional
-- (void)settingsCell:(JTSettingsCell *)cell valueChangedForSettingWithKey:(NSString *)key toValue:(id)value;
+- (void)settingsCell:(JTSettingsCell *)cell
+    valueChangedForSettingWithKey:(NSString *)key
+                          toValue:(id)value;
 @end

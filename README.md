@@ -37,9 +37,17 @@ This example will create 2 sections with 1 setting each.
                forUserDefaultsKey:@"VideoResolutions"
                         withValue:@"high"
                           options:nil];
-    
+
+    JTSettingsGroup *buttonGroup = [[JTSettingsGroup alloc] initWithTitle:@"Custom"];
+    UIButton *aButton = [[UIButton alloc] init];
+    [aButton addTarget:self action:@selector(settingBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [aButton setTitle:@"Press me" forState:UIControlStateNormal];
+    [aButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [buttonGroup addSettingWithControl:aButton];
+  
     [settingsController addSettingsGroup:generalGroup];
     [settingsController addSettingsGroup:cameraGroup];
+    [settingsController addSettingsGroup:buttonGroup];
     
     [self presentViewController:settingsController animated:YES completion:nil];
 }

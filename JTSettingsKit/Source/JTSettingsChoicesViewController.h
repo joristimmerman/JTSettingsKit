@@ -26,15 +26,15 @@
 #import "JTSettingsEditorDelegate.h"
 #import "JTSettingsEditing.h"
 
-@interface JTSettingsChoicesViewController : UITableViewController <JTSettingsEditing>
+@interface JTSettingsChoicesViewController : UITableViewController<JTSettingsEditing>
 
 @property id<JTSettingsEditorDelegate> delegate;
 
-@property (nonatomic) JTSettingsGroup *settingsGroup;
-@property (nonatomic) NSString *settingsKey;
-@property (nonatomic) id selectedValue;
+@property(nonatomic) JTSettingsGroup *settingsGroup;
+@property(nonatomic) NSString *settingsKey;
+@property(nonatomic) id selectedValue;
 
-@property (nonatomic) NSDictionary *data;
+@property(nonatomic) NSDictionary *data;
 
-@property (nonatomic) BOOL allowMultiSelection;
+@property(nonatomic) BOOL allowMultiSelection;
 @end

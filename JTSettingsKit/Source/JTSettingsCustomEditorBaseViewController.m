@@ -14,5 +14,4 @@
 
 @implementation JTSettingsCustomEditorBaseViewController
 
-
 @end

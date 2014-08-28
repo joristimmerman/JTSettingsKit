@@ -10,273 +10,282 @@
 #import "JTSettingsTableViewController.h"
 #import "JTSettingsCell.h"
 
-@interface JTSettingsViewController () <JTSettingsVisualizerDelegate, JTSettingsEditorDelegate>{
-	NSMutableArray *_settingGroups;
-    UIViewController<JTSettingsVisualizing> *settingsController;
+@interface JTSettingsViewController ()<JTSettingsVisualizerDelegate, JTSettingsEditorDelegate> {
+  NSMutableArray *_settingGroups;
+  UIViewController<JTSettingsVisualizing> *settingsController;
 }
 
 @end
 
 @implementation JTSettingsViewController
 
--(id) initWithSettingsVisualizerClass:(Class) settingsViewControllerClass {
-    self = [super init];
-    if(self){
-
-        if (![settingsViewControllerClass conformsToProtocol:@protocol(JTSettingsVisualizing)] ||
-            ![settingsViewControllerClass isSubclassOfClass:[UIViewController class]]) {
-            [NSException
-             raise:@"Invalid class."
-             format:@"Invalid class passed to init function, given class %@ is not a %@ and/or does not implement the protocol %@",
-             NSStringFromClass(settingsViewControllerClass),
-             NSStringFromClass([UIViewController class]),
-             NSStringFromProtocol(@protocol(JTSettingsVisualizing))];
-        }
-        
-        settingsController = (UIViewController<JTSettingsVisualizing> *)[[settingsViewControllerClass alloc] init];
-        settingsController.delegate = self;
-        _autoStoreValuesInUserDefaults = NO;
-        
-        [self addChildViewController:settingsController];
-
+- (id)initWithSettingsVisualizerClass:(Class)settingsViewControllerClass {
+  self = [super init];
+  if (self) {
+    if (![settingsViewControllerClass conformsToProtocol:@protocol(JTSettingsVisualizing)] ||
+        ![settingsViewControllerClass isSubclassOfClass:[UIViewController class]]) {
+      [NSException raise:@"Invalid class."
+                  format:@"Invalid class passed to init function, given class %@ is not a %@ "
+                         @"and/or does not implement the protocol %@",
+                         NSStringFromClass(settingsViewControllerClass),
+                         NSStringFromClass([UIViewController class]),
+                         NSStringFromProtocol(@protocol(JTSettingsVisualizing))];
     }
-    return self;
+
+    settingsController =
+        (UIViewController<JTSettingsVisualizing> *)[[settingsViewControllerClass alloc] init];
+    settingsController.delegate = self;
+    _autoStoreValuesInUserDefaults = NO;
+
+    [self addChildViewController:settingsController];
+  }
+  return self;
 }
 
-- (id)init
-{
-    self = [self initWithSettingsVisualizerClass:[JTSettingsTableViewController class]];
-    return self;
+- (id)init {
+  self = [self initWithSettingsVisualizerClass:[JTSettingsTableViewController class]];
+  return self;
+}
+
+- (NSUInteger) numSettingsGroups {
+  return [_settingGroups count];
 }
 
 - (void)setTitle:(NSString *)title forGroupAt:(NSUInteger)index {
-	JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
-	if (group) {
-		group.title = title;
-	}
+  JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
+  if (group) {
+    group.title = title;
+  }
 }
 
 - (void)setFooter:(NSString *)footer forGroupAt:(NSUInteger)index {
-	JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
-	if (group) {
-		group.footer = footer;
-	}
+  JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
+  if (group) {
+    group.footer = footer;
+  }
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 }
 
 - (void)addSettingsGroup:(JTSettingsGroup *)group {
-	[self addSettingsGroup:group at:_settingGroups.count];
+  [self addSettingsGroup:group at:_settingGroups.count];
 }
 
 - (void)addSettingsGroup:(JTSettingsGroup *)group at:(NSUInteger)index {
-	if (!_settingGroups) {
-		_settingGroups = [NSMutableArray array];
-	}
-    
-	[_settingGroups insertObject:group atIndex:index];
-	[settingsController reload];
+  if (!_settingGroups) {
+    _settingGroups = [NSMutableArray array];
+  }
+
+  [_settingGroups insertObject:group atIndex:index];
+  [settingsController reload];
 }
 
-- (void)addSettingWithType:(JTSettingType)settingType
-                   toGroup:(JTSettingsGroup *)group
-                 withLabel:(NSString *)label
-                    forKey:(NSString *)key
-                 withValue:(id)value
-                   options:(NSDictionary *)optionsOrNil {
-	
-    [group addSettingWithType:settingType
-                        label:label
-           forUserDefaultsKey:key
-                    withValue:value
-                      options:optionsOrNil];
-    
-    
-	[settingsController reload];
+-(void) removeSettingsGroup:(JTSettingsGroup *)group {
+  if (!_settingGroups) {
+    return;
+  }
+  
+  [_settingGroups removeObject:group];
+  [settingsController reload];
 }
 
-- (void) reloadSettingForKey:(NSString *)key
-                   inGroupAt:(NSUInteger) groupIndex {
-    JTSettingsGroup *grp = [_settingGroups objectAtIndex:groupIndex];
-    if (grp) {
-        NSUInteger index = [grp indexForKey:key];
-        if(index != NSNotFound){
-            [settingsController reloadItemAt:index inGroupAt:groupIndex];
-        }
+- (void)reloadSettingForKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *grp = [_settingGroups objectAtIndex:groupIndex];
+  if (grp) {
+    NSUInteger index = [grp indexForKey:key];
+    if (index != NSNotFound) {
+      [settingsController reloadItemAt:index inGroupAt:groupIndex];
     }
+  }
 }
 
-#pragma mark - table delegate 
+#pragma mark - table delegate
 
--(NSUInteger) numberOfGroups {
-    return _settingGroups.count;
+- (NSUInteger)numberOfGroups {
+  return _settingGroups.count;
 }
 
--(NSUInteger) numberOfSettingsInGroupAt:(NSUInteger) index {
-    JTSettingsGroup *grp = [_settingGroups objectAtIndex:index];
-    if(grp){
-        return [grp count];
+- (NSUInteger)numberOfSettingsInGroupAt:(NSUInteger)index {
+  JTSettingsGroup *grp = [_settingGroups objectAtIndex:index];
+  if (grp) {
+    return [grp count];
+  }
+  return 0;
+}
+
+- (NSString *)titleForGroupAt:(NSUInteger)index {
+  JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
+
+  if (group) {
+    return [group title];
+  }
+  return nil;
+}
+
+- (NSString *)footerForGroupAt:(NSUInteger)index {
+  JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
+
+  if (group) {
+    return [group footer];
+  }
+
+  return nil;
+}
+
+- (NSString *)settingKeyForSettingAt:(NSUInteger)index inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [self settingsGroupAtIndex:groupIndex];
+  if (group) {
+    return [group keyOfSettingAt:index];
+  }
+  return nil;
+}
+
+- (BOOL) settingEnabledForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [self settingsGroupAtIndex:groupIndex];
+  if (group) {
+    return [group settingWithKeyIsEnabled:key];
+  }
+  return NO;
+}
+
+- (BOOL)shouldSelectSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [self settingsGroupAtIndex:groupIndex];
+  if (group) {
+    return [group hasEditorForSettingWithKey:key];
+  }
+  return NO;
+}
+
+- (UIViewController<JTSettingsEditing> *)editorForSettingWithKey:(NSString *)key
+                                                       inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:groupIndex];
+
+  if (group) {
+    Class editorClass = [group editorClassForSettingWithKey:key];
+
+    if (!editorClass) {
+      return nil;
     }
-    return 0;
-}
 
--(NSString *) titleForGroupAt:(NSUInteger) index {
-    JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
-    
-	if (group) {
-		return [group title];
-	}
-    return nil;
-}
+    UIViewController<JTSettingsEditing> *editor = [[editorClass alloc] init];
 
--(NSString *) footerForGroupAt:(NSUInteger) index {
-    JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:index];
-    
-	if (group) {
-		return [group footer];
-	}
-    
-    return nil;
-}
+    editor.title = [group settingLabelForSettingWithKey:key];
+    editor.settingsGroup = group;
+    editor.settingsKey = key;
 
--(NSString *) settingKeyForSettingAt:(NSUInteger) index inGroupAt:(NSUInteger) groupIndex {
-    JTSettingsGroup *group = [self groupAtIndex:groupIndex];
-    if(group){
-        return [group keyOfSettingAt:index];
+    NSDictionary *editorData = nil;
+    if ([self.settingDelegate respondsToSelector:@selector(settingsViewController:
+                                                     dataForSettingEditorDataForSettingKey:)]) {
+      editorData = [self.settingDelegate settingsViewController:self
+                          dataForSettingEditorDataForSettingKey:key];
     }
-    return nil;
-}
+    editor.data = editorData;
+    editor.selectedValue =
+        [NSString stringWithFormat:@"%@", [group settingValueForSettingWithKey:key]];
 
--(BOOL) shouldSelectSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) groupIndex{
-    JTSettingsGroup *group = [self groupAtIndex:groupIndex];
-    if(group){
-        return [group hasEditorForSettingWithKey:key];
+    editor.delegate = self;
+
+    NSDictionary *editorOptions = [group editorPropertiesForSettingWithKey:key];
+    if (editorOptions) {
+      for (NSString *key in [editorOptions allKeys]) {
+        [editor setValue:[editorOptions valueForKey:key] forKey:key];
+      }
     }
-    return NO;
+
+    return editor;
+  }
+
+  return nil;
 }
 
--(UIViewController<JTSettingsEditing>*) editorForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
-
-    JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:groupIndex];
-    
-	if (group) {
-		Class editorClass = [group editorClassForSettingWithKey:key];
-        
-        if(!editorClass){
-            return nil;
-        }
-        
-        UIViewController<JTSettingsEditing> *editor = [[editorClass alloc] init];
-        
-        editor.title = [group settingLabelForSettingWithKey:key];
-        editor.settingsGroup = group;
-        editor.settingsKey = key;
-        
-        NSDictionary *editorData= nil;
-        if([self.settingDelegate respondsToSelector:@selector(settingsViewController:dataForSettingEditorDataForSettingKey:)]){
-            editorData = [self.settingDelegate settingsViewController:self dataForSettingEditorDataForSettingKey:key];
-        }
-        editor.data = editorData;
-        editor.selectedValue = [NSString stringWithFormat:@"%@",[group settingValueForSettingWithKey:key]];
-        
-        editor.delegate = self;
-        
-        NSDictionary *editorOptions = [group editorPropertiesForSettingWithKey:key];
-        if(editorOptions){
-            for (NSString* key in [editorOptions allKeys]) {
-                [editor setValue:[editorOptions valueForKey:key] forKey:key];
-            }
-        }
-        
-        return editor;
-	}
-    
-    return nil;
+- (NSString *)settingLabelForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
+  if (group) {
+    return [group settingLabelForSettingWithKey:key];
+  }
+  return nil;
 }
 
--(NSString *) settingLabelForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) groupIndex {
-    JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
-    if(group){
-        return [group settingLabelForSettingWithKey:key];
+- (JTSettingType)settingTypeForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
+  if (group) {
+    return [group settingTypeForSettingWithKey:key];
+  }
+  return JTSettingTypeCustom;
+}
+
+- (id)selectedDataForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
+  if (group) {
+    return [group settingValueForSettingWithKey:key];
+  }
+  return nil;
+}
+
+- (NSString *)selectedDataDescriptionForSettingWithKey:(NSString *)key
+                                             inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
+  if (group) {
+    id value = [group settingValueForSettingWithKey:key];
+    if ([self.settingDelegate respondsToSelector:@selector(descriptionForValue:forKey:)]) {
+      return [self.settingDelegate descriptionForValue:value forKey:key];
     }
-    return nil;
+  }
+  return nil;
 }
 
--(JTSettingType) settingTypeForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) groupIndex {
-    JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
-    if(group){
-        return [group settingTypeForSettingWithKey:key];
-    }
-    return JTSettingTypeCustom;
+- (JTSettingsGroup *)settingsGroupAtIndex:(NSUInteger)groupIndex {
+  return (JTSettingsGroup *)[_settingGroups objectAtIndex:groupIndex];
 }
 
--(id) selectedDataForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) groupIndex{
-    JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
-    if(group){
-        return [group settingValueForSettingWithKey:key];
-    }
-    return nil;
-}
-
--(NSString *) selectedDataDescriptionForSettingWithKey:(NSString*) key inGroupAt:(NSUInteger) groupIndex {
-    JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
-    if(group){
-        id value = [group settingValueForSettingWithKey:key];
-        if ([self.settingDelegate respondsToSelector:@selector(descriptionForValue:forKey:)]) {
-            return [self.settingDelegate descriptionForValue:value forKey:key];
-        }
-    }
-    return nil;
-}
-
-- (JTSettingsGroup *)groupAtIndex:(NSUInteger)groupIndex {
-	return (JTSettingsGroup *)[_settingGroups objectAtIndex:groupIndex];
-}
-
--(void)valueChangedForSettingWithKey:(NSString *)key toValue:(id)value inGroupAt:(NSUInteger)groupIndex {
-    JTSettingsGroup *group = [self groupAtIndex:groupIndex];
-    [self updateSettingWithKey:key inGroup:group toValue:value];
+- (void)valueChangedForSettingWithKey:(NSString *)key
+                              toValue:(id)value
+                            inGroupAt:(NSUInteger)groupIndex {
+  JTSettingsGroup *group = [self settingsGroupAtIndex:groupIndex];
+  [self updateSettingWithKey:key inGroup:group toValue:value];
 }
 
 #pragma mark - SettingsOptionsViewControllerDelegate
-- (void)settingsEditorViewController:(UIViewController<JTSettingsEditing> *) viewController selectedValueChangedToValue:(id)value {
-
-    [self updateSettingWithKey:viewController.settingsKey
-                       inGroup:viewController.settingsGroup
-                       toValue:value];
-    
+- (void)settingsEditorViewController:(UIViewController<JTSettingsEditing> *)viewController
+         selectedValueChangedToValue:(id)value {
+  [self updateSettingWithKey:viewController.settingsKey
+                     inGroup:viewController.settingsGroup
+                     toValue:value];
 }
 
-- (void)updateSettingWithKey:(NSString *)key inGroup:(JTSettingsGroup*)group toValue:(id)value {
-    [group updateSettingValue:value forSettingWithKey:key];
-    
-    if (self.autoStoreValuesInUserDefaults) {
-		JTSettingType settingType = [group settingTypeForSettingWithKey:key];
-		switch (settingType) {
-			case JTSettingTypeSwitch:
-				[[NSUserDefaults standardUserDefaults] setBool:[(NSNumber *)value boolValue] forKey:key];
-				break;
-                
-			default:
-				[[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
-				break;
-		}
-        
-		[[NSUserDefaults standardUserDefaults] synchronize];
-	}
+- (void)updateSettingWithKey:(NSString *)key inGroup:(JTSettingsGroup *)group toValue:(id)value {
+  [group updateSettingValue:value forSettingWithKey:key];
 
-    NSUInteger cellIndex = [group indexForKey:key];
-    NSUInteger groupIndex = [_settingGroups indexOfObject:group];
-    if(cellIndex != NSNotFound && groupIndex != NSNotFound){
-        [settingsController reloadItemAt:cellIndex inGroupAt:groupIndex];
+  if (self.autoStoreValuesInUserDefaults) {
+    JTSettingType settingType = [group settingTypeForSettingWithKey:key];
+    switch (settingType) {
+      case JTSettingTypeSwitch:
+        [[NSUserDefaults standardUserDefaults] setBool:[(NSNumber *)value boolValue] forKey:key];
+        break;
+
+      default:
+        [[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
+        break;
     }
-    
-    if([self.settingDelegate respondsToSelector:@selector(settingsViewController:valueChangedForSettingWithKey:toValue:)]){
-        [self.settingDelegate settingsViewController:self valueChangedForSettingWithKey:key toValue:value];
-    }
+
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
+
+  NSUInteger cellIndex = [group indexForKey:key];
+  NSUInteger groupIndex = [_settingGroups indexOfObject:group];
+  if (cellIndex != NSNotFound && groupIndex != NSNotFound) {
+    [settingsController reloadItemAt:cellIndex inGroupAt:groupIndex];
+  }
+
+  if ([self.settingDelegate respondsToSelector:@selector(settingsViewController:
+                                                   valueChangedForSettingWithKey:
+                                                                         toValue:)]) {
+    [self.settingDelegate settingsViewController:self
+                   valueChangedForSettingWithKey:key
+                                         toValue:value];
+  }
 }
-
 
 @end

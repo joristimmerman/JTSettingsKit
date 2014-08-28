@@ -8,11 +8,11 @@
 #import "JTSettingsEditing.h"
 #import "JTSettingsEditorDelegate.h"
 
-@interface JTSettingsCustomEditorBaseViewController : UIViewController <JTSettingsEditing>
-@property (nonatomic) JTSettingsGroup *settingsGroup;
-@property (nonatomic) NSString *settingsKey;
-@property (nonatomic) id selectedValue;
+@interface JTSettingsCustomEditorBaseViewController : UIViewController<JTSettingsEditing>
+@property(nonatomic) JTSettingsGroup *settingsGroup;
+@property(nonatomic) NSString *settingsKey;
+@property(nonatomic) id selectedValue;
 
-@property (nonatomic) NSDictionary *data;
+@property(nonatomic) NSDictionary *data;
 @property id<JTSettingsEditorDelegate> delegate;
 @end

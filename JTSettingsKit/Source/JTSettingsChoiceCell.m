@@ -28,24 +28,35 @@
 @implementation JTSettingsChoiceCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-	self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
-	if (self) {
-		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		self.selectionStyle = UITableViewCellSelectionStyleBlue;
-	}
-	return self;
+  self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
+  if (self) {
+    [self setEnabled:YES];
+  }
+  return self;
+}
+
+-(void) setEnabled:(BOOL)enabled
+{
+  super.enabled = enabled;
+
+  if(enabled){
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.selectionStyle = UITableViewCellSelectionStyleBlue;
+  } else {
+    self.accessoryType = UITableViewCellAccessoryNone;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-	[super setSelected:selected animated:YES];
+  [super setSelected:selected animated:YES];
 }
 
--(void)setSelectedValue:(id)selectedValue{
-    super.selectedValue = selectedValue;
-    [self updateSelectedValueLabel];
+- (void)setSelectedValue:(id)selectedValue {
+  super.selectedValue = selectedValue;
+  [self updateSelectedValueLabel];
 }
 
--(void) updateSelectedValueLabel{
-    
+- (void)updateSelectedValueLabel {
 }
 @end

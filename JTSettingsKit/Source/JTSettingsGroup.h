@@ -24,11 +24,11 @@
 // THE SOFTWARE.
 #import "JTSettingsEditing.h"
 
-enum  {
-	JTSettingTypeCustom = 0,
-	JTSettingTypeSwitch = 1,
-	JTSettingTypeChoice,
-  	JTSettingTypeMultiChoice
+enum {
+  JTSettingTypeCustom = 0,
+  JTSettingTypeSwitch = 1,
+  JTSettingTypeChoice,
+  JTSettingTypeMultiChoice
 };
 typedef NSUInteger JTSettingType;
 
@@ -47,33 +47,31 @@ typedef NSUInteger JTSettingType;
                  withValue:(id)value
                    options:(NSDictionary *)optionsOrNil;
 
-- (void) addSettingWithEditor:(Class) editorClass
+- (void)addSettingWithEditor:(Class)editorClass
                        label:(NSString *)label
           forUserDefaultsKey:(NSString *)userDefaultsKey
                    withValue:(id)value
                      options:(NSDictionary *)optionsOrNil;
 
+- (void)addSettingWithControl:(UIView *)control;
+
 - (id)settingValueForSettingWithKey:(NSString *)key;
 - (NSString *)settingLabelForSettingWithKey:(NSString *)key;
 - (JTSettingType)settingTypeForSettingWithKey:(NSString *)key;
-- (Class)editorClassForSettingWithKey:(NSString *) key;
-- (NSDictionary *) editorPropertiesForSettingWithKey:(NSString *) key;
+- (Class)editorClassForSettingWithKey:(NSString *)key;
+- (NSDictionary *)editorPropertiesForSettingWithKey:(NSString *)key;
 
 - (void)updateSettingValue:(id)value forSettingWithKey:(NSString *)key;
 - (void)updateSettingLabel:(NSString *)label forSettingWithKey:(NSString *)key;
 - (void)updateSettingType:(JTSettingType)type forSettingWithKey:(NSString *)key;
 
+- (void)setSettingWithKey:(NSString *)key enabled:(BOOL) enabled;
+- (BOOL)settingWithKeyIsEnabled:(NSString *)key;
+
 - (NSString *)keyOfSettingAt:(NSUInteger)index;
 
-- (BOOL) hasEditorForSettingWithKey:(NSString *) key;
+- (BOOL)hasEditorForSettingWithKey:(NSString *)key;
 
 - (BOOL)hasKey:(NSString *)key;
 - (NSUInteger)indexForKey:(NSString *)key;
 @end
-
-
-
-
-
-
-

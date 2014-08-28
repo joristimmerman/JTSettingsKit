@@ -25,141 +25,141 @@
 
 #import "JTSettingsChoicesViewController.h"
 
-@interface JTSettingsChoicesViewController ()
-{
-	NSObject *_defaultValue;
-    NSMutableArray *_selectedItems;
+@interface JTSettingsChoicesViewController () {
+  NSObject *_defaultValue;
+  NSMutableArray *_selectedItems;
 }
 @end
 
 @implementation JTSettingsChoicesViewController
-- (id)init
-{
-    self = [self initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-    }
-    return self;
+- (id)init {
+  self = [self initWithStyle:UITableViewStyleGrouped];
+  if (self) {
+  }
+  return self;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
-	self = [super initWithStyle:style];
-	if (self) {
-		[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-	}
-	return self;
+  self = [super initWithStyle:style];
+  if (self) {
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+  }
+  return self;
 }
 
 - (void)setData:(NSDictionary *)options {
-	_data = options;
-	[self.tableView reloadData];
+  _data = options;
+  [self.tableView reloadData];
 }
 
-- (void)setSelectedValue:(id)selectedValue{
-    if([selectedValue isKindOfClass:[NSArray class]]){
-        _selectedItems = selectedValue;
-    }else{
-        _selectedItems = [NSMutableArray arrayWithObject:selectedValue];
-    }
-	[self selectSelectedData];
+- (void)setSelectedValue:(id)selectedValue {
+  if ([selectedValue isKindOfClass:[NSArray class]]) {
+    _selectedItems = selectedValue;
+  } else {
+    _selectedItems = [NSMutableArray arrayWithObject:selectedValue];
+  }
+  [self selectSelectedData];
 }
 
--(id) selectedValue{
-    if(_allowMultiSelection){
-        return _selectedItems;
-    }
-    return [_selectedItems firstObject];
+- (id)selectedValue {
+  if (_allowMultiSelection) {
+    return _selectedItems;
+  }
+  return [_selectedItems firstObject];
 }
 
--(void) setAllowMultiSelection:(BOOL)allowMultiSelection {
-    _allowMultiSelection = allowMultiSelection;
-    self.tableView.allowsMultipleSelection = allowMultiSelection;
+- (void)setAllowMultiSelection:(BOOL)allowMultiSelection {
+  _allowMultiSelection = allowMultiSelection;
+  self.tableView.allowsMultipleSelection = allowMultiSelection;
 }
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.data.allKeys count];
+  return [self.data.allKeys count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *CellIdentifier = @"Cell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-	cell.textLabel.text = [self textForCellIndex:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  static NSString *CellIdentifier = @"Cell";
+  UITableViewCell *cell =
+      [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  cell.textLabel.text = [self textForCellIndex:indexPath];
 
-	return cell;
+  return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *key = [[self.data allKeys] objectAtIndex:indexPath.row];
-	if (key) {
-        [_selectedItems addObject:key];
-        
-		if ([self.delegate respondsToSelector:@selector(settingsEditorViewController:selectedValueChangedToValue:)]) {
-           
-            if(self.allowMultiSelection){
-                [self.delegate settingsEditorViewController:self
-                                selectedValueChangedToValue:[NSArray arrayWithArray:_selectedItems]];
-            }else{
-                [self.delegate settingsEditorViewController:self
-                                selectedValueChangedToValue:key];
-            }
-            
-		}
+  NSString *key = [[self.data allKeys] objectAtIndex:indexPath.row];
+  if (key) {
+    [_selectedItems addObject:key];
 
-        if(!self.allowMultiSelection){
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-	}
+    if ([self.delegate respondsToSelector:@selector(settingsEditorViewController:
+                                                     selectedValueChangedToValue:)]) {
+      if (self.allowMultiSelection) {
+        [self.delegate settingsEditorViewController:self
+                        selectedValueChangedToValue:[NSArray arrayWithArray:_selectedItems]];
+      } else {
+        [self.delegate settingsEditorViewController:self selectedValueChangedToValue:key];
+      }
+    }
+
+    if (!self.allowMultiSelection) {
+      [self.navigationController popViewControllerAnimated:YES];
+    }
+  }
 }
 
--(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.title;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+  return self.title;
 }
 
 - (NSString *)textForCellIndex:(NSIndexPath *)indexPath {
-    NSString *key = [[self.data allKeys] objectAtIndex:indexPath.row];
-    return key ? [self.data objectForKey:key] : nil;
+  NSString *key = [[self.data allKeys] objectAtIndex:indexPath.row];
+  return key ? [self.data objectForKey:key] : nil;
 }
 
 - (void)selectRowWithKey:(id)key {
-	NSInteger index = -1;
+  NSInteger index = -1;
 
-    NSUInteger c=0;
-    for(id keyInData in [_data allKeys]){
-        if([key isEqual:keyInData]){
-            index=c;
-            break;
-        }
-        c++;
+  NSUInteger c = 0;
+  for (id keyInData in [_data allKeys]) {
+    if ([key isEqual:keyInData]) {
+      index = c;
+      break;
     }
+    c++;
+  }
 
-	if (index >= 0) {
-		NSIndexPath *pathToCell = [NSIndexPath indexPathForRow:index inSection:0];
-		[self.tableView selectRowAtIndexPath:pathToCell animated:YES scrollPosition:UITableViewScrollPositionNone];
-	}
+  if (index >= 0) {
+    NSIndexPath *pathToCell = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.tableView selectRowAtIndexPath:pathToCell
+                                animated:YES
+                          scrollPosition:UITableViewScrollPositionNone];
+  }
 }
 
 - (void)selectRowsWithKeys:(NSArray *)keys {
-    for(id key in keys){
-        [self selectRowWithKey:key];
-    }
+  for (id key in keys) {
+    [self selectRowWithKey:key];
+  }
 }
 
 - (void)selectSelectedData {
-	if (!_selectedItems || _selectedItems.count == 0) {
-		return;
-	}
-    
-    [self performSelector:@selector(selectRowsWithKeys:) withObject:_selectedItems afterDelay:0];
+  if (!_selectedItems || _selectedItems.count == 0) {
+    return;
+  }
+
+  [self performSelector:@selector(selectRowsWithKeys:) withObject:_selectedItems afterDelay:0];
 }
 
 @end

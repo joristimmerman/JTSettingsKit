@@ -7,13 +7,13 @@
 //
 #import "JTSettingsEditorDelegate.h"
 @class JTSettingsGroup;
-@protocol JTSettingsEditing <NSObject>
+@protocol JTSettingsEditing<NSObject>
 
-@property (nonatomic) JTSettingsGroup *settingsGroup;
-@property (nonatomic) NSString *settingsKey;
-@property (nonatomic) id selectedValue;
+@property(nonatomic) JTSettingsGroup *settingsGroup;
+@property(nonatomic) NSString *settingsKey;
+@property(nonatomic) id selectedValue;
 
-@property (nonatomic) NSDictionary *data;
+@property(nonatomic) NSDictionary *data;
 @property id<JTSettingsEditorDelegate> delegate;
 
 @end

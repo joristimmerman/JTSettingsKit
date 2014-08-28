@@ -23,10 +23,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@interface JTSettingsGroupSettingDictionary : NSMutableDictionary
-{
-	NSMutableDictionary *dictionary;
-	NSMutableArray *array;
+@interface JTSettingsGroupSettingDictionary : NSMutableDictionary {
+  NSMutableDictionary *dictionary;
+  NSMutableArray *array;
 }
 
 - (void)insertObject:(id)anObject forKey:(id)aKey atIndex:(NSUInteger)anIndex;
