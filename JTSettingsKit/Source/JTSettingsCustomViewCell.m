@@ -37,7 +37,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-  UIView *customView = [self controlView];
+  UIView *customView = (UIView *)[self controlView];
   if([customView superview] != self){
     if([customView superview]){
       [customView removeFromSuperview];

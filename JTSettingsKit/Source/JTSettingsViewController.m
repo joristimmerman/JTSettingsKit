@@ -8,6 +8,7 @@
 
 #import "JTSettingsViewController.h"
 #import "JTSettingsTableViewController.h"
+#import "JTSettingsCustomEditorBaseViewController.h"
 #import "JTSettingsCell.h"
 
 @interface JTSettingsViewController ()<JTSettingsVisualizerDelegate, JTSettingsEditorDelegate> {
@@ -47,7 +48,7 @@
   return self;
 }
 
-- (NSUInteger) numSettingsGroups {
+- (NSUInteger)numSettingsGroups {
   return [_settingGroups count];
 }
 
@@ -78,17 +79,40 @@
     _settingGroups = [NSMutableArray array];
   }
 
+  if (group.key) {
+    JTSettingsGroup *grpWithKey = [self settingsGroupWithKey:group.key];
+    if (grpWithKey) {
+      [NSException raise:@"Duplicate key error"
+                  format:@"The key %@ was already used for group with title: %@", group.key,
+                         grpWithKey.title];
+    }
+  }
+
   [_settingGroups insertObject:group atIndex:index];
   [settingsController reload];
 }
 
--(void) removeSettingsGroup:(JTSettingsGroup *)group {
+- (void)removeSettingsGroup:(JTSettingsGroup *)group {
   if (!_settingGroups) {
     return;
   }
-  
+
   [_settingGroups removeObject:group];
   [settingsController reload];
+}
+
+- (JTSettingsGroup *)settingsGroupWithKey:(NSString *)key {
+  if (!_settingGroups) {
+    return nil;
+  }
+
+  for (JTSettingsGroup *group in _settingGroups) {
+    if ([group.key isEqualToString:key]) {
+      return group;
+    }
+  }
+
+  return nil;
 }
 
 - (void)reloadSettingForKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
@@ -99,6 +123,10 @@
       [settingsController reloadItemAt:index inGroupAt:groupIndex];
     }
   }
+}
+
+- (void)reload {
+  [settingsController reload];
 }
 
 #pragma mark - table delegate
@@ -142,7 +170,7 @@
   return nil;
 }
 
-- (BOOL) settingEnabledForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
+- (BOOL)settingEnabledForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
   JTSettingsGroup *group = [self settingsGroupAtIndex:groupIndex];
   if (group) {
     return [group settingWithKeyIsEnabled:key];
@@ -163,38 +191,62 @@
   JTSettingsGroup *group = (JTSettingsGroup *)[_settingGroups objectAtIndex:groupIndex];
 
   if (group) {
-    Class editorClass = [group editorClassForSettingWithKey:key];
-
-    if (!editorClass) {
-      return nil;
-    }
-
-    UIViewController<JTSettingsEditing> *editor = [[editorClass alloc] init];
-
-    editor.title = [group settingLabelForSettingWithKey:key];
-    editor.settingsGroup = group;
-    editor.settingsKey = key;
-
-    NSDictionary *editorData = nil;
-    if ([self.settingDelegate respondsToSelector:@selector(settingsViewController:
-                                                     dataForSettingEditorDataForSettingKey:)]) {
-      editorData = [self.settingDelegate settingsViewController:self
-                          dataForSettingEditorDataForSettingKey:key];
-    }
-    editor.data = editorData;
-    editor.selectedValue =
-        [NSString stringWithFormat:@"%@", [group settingValueForSettingWithKey:key]];
-
-    editor.delegate = self;
-
-    NSDictionary *editorOptions = [group editorPropertiesForSettingWithKey:key];
-    if (editorOptions) {
-      for (NSString *key in [editorOptions allKeys]) {
-        [editor setValue:[editorOptions valueForKey:key] forKey:key];
+    UIViewController<JTSettingsEditing> *editor;
+    JTSettingType type = [group settingTypeForSettingWithKey:key];
+    if (type == JTSettingTypeLinkedView) {
+      UIView *view = (UIView *) [group settingValueForSettingWithKey:key];
+      
+      if (!view) {
+        return nil;
       }
-    }
+      
+      editor = [[JTSettingsCustomEditorBaseViewController alloc] init];
+      editor.view = view;
+    } else if(type==JTSettingTypeWebView){
+      NSURL *url  = (NSURL *) [group settingValueForSettingWithKey:key];
+      if(!url) {
+        return nil;
+      }
+      
+      UIWebView *view = [[UIWebView alloc] init];
+      [view loadRequest:[NSURLRequest requestWithURL:url]];
+      
+      editor = [[JTSettingsCustomEditorBaseViewController alloc] init];
+      editor.view = view;
+    } else {
+      Class editorClass = [group editorClassForSettingWithKey:key];
 
-    return editor;
+      if (!editorClass) {
+        return nil;
+      }
+
+      editor = [[editorClass alloc] init];
+    }
+    
+      editor.title = [group settingLabelForSettingWithKey:key];
+      editor.settingsGroup = group;
+      editor.settingsKey = key;
+
+      NSDictionary *editorData = nil;
+      if ([self.settingDelegate respondsToSelector:@selector(settingsViewController:
+                                                       dataForSettingEditorDataForSettingKey:)]) {
+        editorData = [self.settingDelegate settingsViewController:self
+                            dataForSettingEditorDataForSettingKey:key];
+      }
+      editor.data = editorData;
+      editor.selectedValue =
+          [NSString stringWithFormat:@"%@", [group settingValueForSettingWithKey:key]];
+
+      editor.delegate = self;
+
+      NSDictionary *editorOptions = [group editorPropertiesForSettingWithKey:key];
+      if (editorOptions) {
+        for (NSString *key in [editorOptions allKeys]) {
+          [editor setValue:[editorOptions valueForKey:key] forKey:key];
+        }
+      }
+
+      return editor;
   }
 
   return nil;

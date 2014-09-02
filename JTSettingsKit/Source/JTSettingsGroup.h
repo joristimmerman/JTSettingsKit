@@ -23,23 +23,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 #import "JTSettingsEditing.h"
-
-enum {
-  JTSettingTypeCustom = 0,
-  JTSettingTypeSwitch = 1,
-  JTSettingTypeChoice,
-  JTSettingTypeMultiChoice
-};
-typedef NSUInteger JTSettingType;
+#import "JTSettingsType.h"
 
 @interface JTSettingsGroup : NSObject
 
+@property NSString *key;
 @property NSString *title;
 @property NSString *footer;
 
 - (NSUInteger)count;
 
+- (id)init;
 - (id)initWithTitle:(NSString *)title;
+- (id)initWithKey:(NSString *) key;
 
 - (void)addSettingWithType:(JTSettingType)settingType
                      label:(NSString *)label
@@ -52,6 +48,14 @@ typedef NSUInteger JTSettingType;
           forUserDefaultsKey:(NSString *)userDefaultsKey
                    withValue:(id)value
                      options:(NSDictionary *)optionsOrNil;
+
+- (void)addSettingWithLinkedView:(UIView *) linkedView
+                           label:(NSString *)label
+                         options:(NSDictionary *)optionsOrNil;
+
+- (void)addWebLinkWithURL:(NSURL *) url
+                           linkLabel:(NSString *)label;
+
 
 - (void)addSettingWithControl:(UIView *)control;
 

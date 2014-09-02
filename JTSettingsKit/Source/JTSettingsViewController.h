@@ -22,13 +22,14 @@
 - (void)removeSettingsGroup:(JTSettingsGroup *)group;
 
 - (JTSettingsGroup *) settingsGroupAtIndex:(NSUInteger) index;
+- (JTSettingsGroup *) settingsGroupWithKey:(NSString *) key;
 
 - (void)setTitle:(NSString *)title forGroupAt:(NSUInteger)groupIndex;
 
 - (void)setFooter:(NSString *)title forGroupAt:(NSUInteger)groupIndex;
 
 - (void)reloadSettingForKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex;
-
+- (void)reload;
 @end
 
 @protocol JTSettingsViewControllerDelegate<NSObject>

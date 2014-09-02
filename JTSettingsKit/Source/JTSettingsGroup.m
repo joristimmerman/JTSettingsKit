@@ -48,14 +48,18 @@
      userDefaultsKey:(NSString *)userDefaultsKey
             andValue:(id)value;
 
-- (id)initWithSettingControl:(UIView *)control;
-
+- (id)initWithSettingView:(UIView *)view;
+- (id)initWithLinkedViewEditor:(UIView *)view
+                         label:(NSString *)label;
+- (id)initWithWebLinkWithURL:(NSURL *) url
+                   linkLabel:(NSString *)label;
 @end
 
 @implementation Setting
 
 - (void)setEditorClass:(Class)editorClass {
   if (editorClass != nil) {
+    if(self.userDefaultsKey) {
     if (![editorClass isSubclassOfClass:[UIViewController class]] ||
         ![editorClass conformsToProtocol:@protocol(JTSettingsEditing)]) {
       [NSException
@@ -67,7 +71,7 @@
       _editorClass = nil;
     }
   }
-
+  }
   _editorClass = editorClass;
 }
 
@@ -96,13 +100,13 @@
   return self;
 }
 
-- (id)initWithSettingControl:(UIView *)control {
+- (id)initWithSettingView:(UIView *)view {
   self = [self init];
   if (self) {
     self.label = nil;
     self.type = JTSettingTypeCustom;
     self.userDefaultsKey = nil;
-    self.value = control;
+    self.value = view;
     self.enabled = YES;
   }
   return self;
@@ -116,14 +120,55 @@
   if (self) {
     self.type = JTSettingTypeCustom;
     self.label = label;
-    self.editorClass = editorClass;
     self.userDefaultsKey = userDefaultsKey;
+    self.editorClass = editorClass;
     self.value = value;
     self.enabled = YES;
   }
   return self;
 }
 
+- (id)initWithLinkedViewEditor:(UIView *)view
+               label:(NSString *)label {
+  self = [self init];
+  if (self) {
+    self.type = JTSettingTypeLinkedView;
+    self.label = label;
+    self.editorClass = nil;
+    self.value = view;
+    self.enabled = YES;
+  }
+  return self;
+}
+
+- (id)initWithWebLinkWithURL:(NSURL *) url
+                linkLabel:(NSString *)label {
+  self = [self init];
+  if (self) {
+    self.type = JTSettingTypeWebView;
+    self.label = label;
+    self.editorClass = nil;
+    self.value = url;
+    self.enabled = YES;
+  }
+  return self;
+}
+
+/* Render view in setting cell */
+- (id)initWithView:(UIView *)view
+               label:(NSString *)label
+            andValue:(id)value {
+  self = [self init];
+  if (self) {
+    self.userDefaultsKey = nil;
+    self.type = JTSettingTypeCustom;
+    self.label = label;
+
+    self.value = view;
+    self.enabled = YES;
+  }
+  return self;
+}
 @end
 
 #pragma mark -SettingsGroup class
@@ -139,6 +184,14 @@
   self = [super init];
   if (self) {
     _options = [JTSettingsGroupSettingDictionary dictionary];
+  }
+  return self;
+}
+
+- (id)initWithKey:(NSString *) key {
+  self = [self init];
+  if (self) {
+    _key = key;
   }
   return self;
 }
@@ -185,11 +238,39 @@
                                      userDefaultsKey:userDefaultsKey
                                             andValue:value];
   setting.editorProperties = optionsOrNil;
-  [_options setObject:setting forKey:userDefaultsKey];
+  
+  if(userDefaultsKey){
+    [_options setObject:setting forKey:userDefaultsKey];
+  } else {
+    [_options setObject:setting forKey:[NSString stringWithFormat:@"%@_%lu",NSStringFromClass(editorClass),
+                                        (unsigned long)[[_options allKeys] count]
+                                        ]];
+  }
+
+}
+
+- (void)addSettingWithLinkedView:(UIView *) linkedView
+                           label:(NSString *)label
+                         options:(NSDictionary *)optionsOrNil {
+  Setting *setting = [[Setting alloc] initWithLinkedViewEditor:linkedView label:label];
+  
+  setting.editorProperties = optionsOrNil;
+  [_options setObject:setting
+               forKey:[NSString stringWithFormat:@"Link%@%lu",
+                       NSStringFromClass([linkedView class]),
+                       (unsigned long)[[_options allKeys] count]]];
+}
+
+- (void)addWebLinkWithURL:(NSURL *) url
+                linkLabel:(NSString *)label {
+   Setting *setting = [[Setting alloc] initWithWebLinkWithURL:url linkLabel:label];
+  
+  [_options setObject:setting
+               forKey:[url path]];
 }
 
 - (void)addSettingWithControl:(UIView *)control {
-  Setting *setting = [[Setting alloc] initWithSettingControl:control];
+  Setting *setting = [[Setting alloc] initWithSettingView:control];
   setting.editorProperties = nil;
   [_options setObject:setting
                forKey:[NSString stringWithFormat:@"Contrl%lu",
@@ -253,6 +334,13 @@
 
 - (BOOL)hasEditorForSettingWithKey:(NSString *)key {
   Setting *setting = [_options objectForKey:key];
+  
+  if(setting.type == JTSettingTypeLinkedView) {
+    return setting.value != nil;
+  } else if(setting.type == JTSettingTypeWebView){
+    return setting.value != nil;
+  }
+  
   return (setting.editorClass != nil);
 }
 

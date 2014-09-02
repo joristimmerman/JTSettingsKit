@@ -126,7 +126,7 @@
     label = [self.delegate settingLabelForSettingWithKey:key inGroupAt:indexPath.section];
   }
   cell.label = label;
-  
+ 
   if ([self.delegate respondsToSelector:@selector(settingEnabledForSettingWithKey:inGroupAt:)]) {
     BOOL enabled = [self.delegate settingEnabledForSettingWithKey:key inGroupAt:indexPath.section];
     cell.enabled = enabled;
@@ -210,7 +210,7 @@
 - (void)settingsCell:(JTSettingsCell *)cell
 valueChangedForSettingWithKey:(NSString *)key
              toValue:(id)value {
-  if([cell isKindOfClass:JTSettingTypeCustom]){
+  if([cell isKindOfClass:[JTSettingsCustomViewCell class]]){
     return;
   }
   

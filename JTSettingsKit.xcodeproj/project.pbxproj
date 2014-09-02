@@ -28,6 +28,7 @@
 		A93988C8195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A93988C7195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9398943195AED7C00A0DF03 /* JTSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A9398941195AED7C00A0DF03 /* JTSettingsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9398944195AED7C00A0DF03 /* JTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9398942195AED7C00A0DF03 /* JTSettingsViewController.m */; };
+		A95A688B19B5D52B00147EB9 /* JTSettingsType.h in Headers */ = {isa = PBXBuildFile; fileRef = A95A688919B5D52B00147EB9 /* JTSettingsType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9C05A97195C6C8400B5E667 /* JTSettingsVisualizing.h in Headers */ = {isa = PBXBuildFile; fileRef = A9C05A96195C6C8400B5E667 /* JTSettingsVisualizing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9D5985A19AF4A65001C406F /* JTSettingsCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A9D5985819AF4A65001C406F /* JTSettingsCustomViewCell.h */; };
 		A9D5985B19AF4A65001C406F /* JTSettingsCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D5985919AF4A65001C406F /* JTSettingsCustomViewCell.m */; };
@@ -75,6 +76,7 @@
 		A93988C7195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsEditorDelegate.h; path = Source/JTSettingsEditorDelegate.h; sourceTree = "<group>"; };
 		A9398941195AED7C00A0DF03 /* JTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsViewController.h; path = Source/JTSettingsViewController.h; sourceTree = "<group>"; };
 		A9398942195AED7C00A0DF03 /* JTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsViewController.m; path = Source/JTSettingsViewController.m; sourceTree = "<group>"; };
+		A95A688919B5D52B00147EB9 /* JTSettingsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSettingsType.h; sourceTree = "<group>"; };
 		A97674FB1959CA25009CD655 /* JTSettingsEditing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JTSettingsEditing.h; path = Source/JTSettingsEditing.h; sourceTree = "<group>"; };
 		A9C05A96195C6C8400B5E667 /* JTSettingsVisualizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsVisualizing.h; path = Source/JTSettingsVisualizing.h; sourceTree = "<group>"; };
 		A9D5985819AF4A65001C406F /* JTSettingsCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsCustomViewCell.h; path = Source/JTSettingsCustomViewCell.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		A9EBE60D195997BA00FF85A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A95A688919B5D52B00147EB9 /* JTSettingsType.h */,
 				A9F13DD219597AE60002272B /* JTSettingsGroup.h */,
 				A9F13DD319597AE60002272B /* JTSettingsGroup.m */,
 				A9F13DD419597AE60002272B /* JTSettingsGroupSettingDictionary.h */,
@@ -237,6 +240,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95A688B19B5D52B00147EB9 /* JTSettingsType.h in Headers */,
 				A9F13E6B19598EB00002272B /* JTSettingsKit.h in Headers */,
 				A9F13E6619598EB00002272B /* JTSettingsGroup.h in Headers */,
 				A9398943195AED7C00A0DF03 /* JTSettingsViewController.h in Headers */,

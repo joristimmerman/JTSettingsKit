@@ -23,14 +23,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "JTSettingsType.h"
+
 @protocol JTSettingsCellDelegate;
 @interface JTSettingsCell : UITableViewCell
 
 @property NSString *key;
 @property (nonatomic) id selectedValue;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic) JTSettingType settingType;
 
 @property (nonatomic) NSString *label;
+
 
 @property id<JTSettingsCellDelegate> delegate;
 
