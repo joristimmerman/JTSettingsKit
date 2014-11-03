@@ -47,7 +47,7 @@ NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent) {
 
 - (id)initWithCapacity:(NSUInteger)capacity {
   self = [super init];
-  if (self != nil) {
+  if (self) {
     dictionary = [[NSMutableDictionary alloc] initWithCapacity:capacity];
     array = [[NSMutableArray alloc] initWithCapacity:capacity];
   }
