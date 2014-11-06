@@ -32,6 +32,7 @@
 
 - (void)valueChangedForSettingWithKey:(NSString *)key toValue:(id)value inGroupAt:(NSUInteger)group;
 
+- (void) willDrawView:(UIView *)view forSettingWithKey:(NSString *) key inGroupAt:(NSUInteger)group;
 @end
 
 @protocol JTSettingsVisualizing<NSObject>

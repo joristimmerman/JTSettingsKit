@@ -229,9 +229,9 @@
 
       NSDictionary *editorData = nil;
       if ([self.settingDelegate respondsToSelector:@selector(settingsViewController:
-                                                       dataForSettingEditorDataForSettingKey:)]) {
+                                                       dataForSettingEditorDataForSettingKey:inGroup:)]) {
         editorData = [self.settingDelegate settingsViewController:self
-                            dataForSettingEditorDataForSettingKey:key];
+                            dataForSettingEditorDataForSettingKey:key inGroup:group];
       }
       editor.data = editorData;
       editor.selectedValue =
@@ -281,8 +281,8 @@
   JTSettingsGroup *group = [_settingGroups objectAtIndex:groupIndex];
   if (group) {
     id value = [group settingValueForSettingWithKey:key];
-    if ([self.settingDelegate respondsToSelector:@selector(descriptionForValue:forKey:)]) {
-      return [self.settingDelegate descriptionForValue:value forKey:key];
+    if ([self.settingDelegate respondsToSelector:@selector(descriptionForValue:forKey:inGroup:)]) {
+      return [self.settingDelegate descriptionForValue:value forKey:key inGroup:group];
     }
   }
   return nil;
@@ -333,10 +333,19 @@
 
   if ([self.settingDelegate respondsToSelector:@selector(settingsViewController:
                                                    valueChangedForSettingWithKey:
-                                                                         toValue:)]) {
+                                                                         toValue:inGroup:)]) {
     [self.settingDelegate settingsViewController:self
                    valueChangedForSettingWithKey:key
-                                         toValue:value];
+                                         toValue:value
+                                         inGroup:group];
+  }
+}
+
+-(void) willDrawView:(UIView *)view forSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)group {
+  if([self.settingDelegate respondsToSelector:@selector(settingsViewController:willDrawView:forSettingWithKey:inGroup:)]){
+    [self.settingDelegate settingsViewController:self
+                                    willDrawView:view forSettingWithKey:key
+                                         inGroup:[self settingsGroupAtIndex:group]];
   }
 }
 

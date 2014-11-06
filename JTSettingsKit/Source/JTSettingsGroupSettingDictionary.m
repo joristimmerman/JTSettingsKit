@@ -42,7 +42,12 @@ NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent) {
 @implementation JTSettingsGroupSettingDictionary
 
 - (id)init {
-  return [self initWithCapacity:0];
+  self = [super init];
+  if (self) {
+    dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
+    array = [[NSMutableArray alloc] initWithCapacity:0];
+  }
+  return self;
 }
 
 - (id)initWithCapacity:(NSUInteger)capacity {

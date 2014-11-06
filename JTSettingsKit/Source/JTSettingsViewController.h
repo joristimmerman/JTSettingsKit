@@ -38,10 +38,17 @@
 
 - (void)settingsViewController:(JTSettingsViewController *)settingsViewController
     valueChangedForSettingWithKey:(NSString *)key
-                          toValue:(id)value;
+                          toValue:(id)value
+                       inGroup:(JTSettingsGroup *) group;
 
-- (NSString *)descriptionForValue:(id)value forKey:(NSString *)key;
+- (NSString *)descriptionForValue:(id)value forKey:(NSString *)key
+                       inGroup:(JTSettingsGroup *) group;
 
 - (NSDictionary *)settingsViewController:(JTSettingsViewController *)settingsViewController
-    dataForSettingEditorDataForSettingKey:(NSString *)key;
+    dataForSettingEditorDataForSettingKey:(NSString *)key
+                       inGroup:(JTSettingsGroup *) group;
+
+-(void) settingsViewController:(JTSettingsViewController *)settingsViewController
+                  willDrawView:(UIView *)view forSettingWithKey:(NSString *)key
+                       inGroup:(JTSettingsGroup *) group;
 @end

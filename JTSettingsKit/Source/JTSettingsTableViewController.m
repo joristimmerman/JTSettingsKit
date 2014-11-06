@@ -148,6 +148,10 @@
   }
   cell.detailTextLabel.text = selectedValueDescription;
   
+  if([self.delegate respondsToSelector:@selector(willDrawView:forSettingWithKey:inGroupAt:)]){
+    [self.delegate willDrawView:cell forSettingWithKey:key inGroupAt:indexPath.section];
+  }
+  
   cell.delegate = self;
   
   return cell;
