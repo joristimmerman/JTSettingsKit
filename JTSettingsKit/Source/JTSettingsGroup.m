@@ -118,7 +118,7 @@
             andValue:(id)value {
   self = [self init];
   if (self) {
-    self.type = JTSettingTypeCustom;
+    self.type = JTSettingTypeCustomEditor;
     self.label = label;
     self.userDefaultsKey = userDefaultsKey;
     self.editorClass = editorClass;

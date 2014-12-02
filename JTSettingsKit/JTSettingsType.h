@@ -11,6 +11,7 @@ enum {
   JTSettingTypeSwitch = 1,
   JTSettingTypeChoice,
   JTSettingTypeMultiChoice,
+	JTSettingTypeCustomEditor,
   JTSettingTypeLinkedView,
   JTSettingTypeWebView
 };
