@@ -28,7 +28,7 @@
 @implementation JTSettingsCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
   if (self) {
     [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
