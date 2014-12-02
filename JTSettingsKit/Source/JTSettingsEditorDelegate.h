@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Joris Timmerman. All rights reserved.
 //
 @protocol JTSettingsEditorDelegate<NSObject>
+@required
 - (void)settingsEditorViewController:(UIViewController *)viewController
          selectedValueChangedToValue:(id)value;
 @end
