@@ -29,6 +29,7 @@
 - (void)setFooter:(NSString *)title forGroupAt:(NSUInteger)groupIndex;
 
 - (void)reloadSettingForKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex;
+- (void)reloadSettingForKey:(NSString *)key inGroup:(JTSettingsGroup *) grp;
 - (void)reload;
 @end
 

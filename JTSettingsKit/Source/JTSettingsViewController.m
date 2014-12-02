@@ -118,11 +118,18 @@
 - (void)reloadSettingForKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
   JTSettingsGroup *grp = [_settingGroups objectAtIndex:groupIndex];
   if (grp) {
-    NSUInteger index = [grp indexForKey:key];
-    if (index != NSNotFound) {
-      [settingsController reloadItemAt:index inGroupAt:groupIndex];
-    }
+		[self reloadSettingForKey:key inGroup:grp];
   }
+}
+
+- (void)reloadSettingForKey:(NSString *)key inGroup:(JTSettingsGroup *) grp {
+	if (grp) {
+		NSUInteger index = [grp indexForKey:key];
+		if (index != NSNotFound) {
+			[settingsController reloadItemAt:index
+														 inGroupAt:[_settingGroups indexOfObject:grp]];
+		}
+	}
 }
 
 - (void)reload {
