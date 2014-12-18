@@ -147,20 +147,27 @@
 #pragma mark - WebView delegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-	[_spinner startAnimating];
+	if(_spinner) {
+		[_spinner startAnimating];
+	}
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	[self stopSpinning];
-	webView.hidden = NO;
-	
-	[UIView animateWithDuration:0.3 animations:^{
-		webView.alpha = 1;
-	}];
+	if(_spinner) {
+		[self stopSpinning];
+		webView.hidden = NO;
+		
+		[UIView animateWithDuration:0.3 animations:^{
+			webView.alpha = 1;
+		}];
+	}
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-	[self stopSpinning];
+	if(_spinner) {
+		[self stopSpinning];
+	}
+	
 	[self showErrorAlert:error];
 }
 
