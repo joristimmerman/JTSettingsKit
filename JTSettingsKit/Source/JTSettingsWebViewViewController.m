@@ -8,7 +8,7 @@
 
 #import "JTSettingsWebViewViewController.h"
 
-@interface JTSettingsWebViewViewController () <UIWebViewDelegate>
+@interface JTSettingsWebViewViewController () <UIWebViewDelegate, UIAlertViewDelegate>
 {
 	UIWebView *_webView;
 	UIActivityIndicatorView *_spinner;
@@ -121,9 +121,9 @@
 																preferredStyle:UIAlertControllerStyleAlert];
 		
 		//action
-		[alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel
+		[alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel
 												handler:^(__unused UIAlertAction *action) {
-													[self.navigationController popViewControllerAnimated:YES];
+													[self cancelView];
 												}]];
 		
 		[self presentViewController:alert animated:YES completion:NULL];
@@ -134,10 +134,14 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.localizedDescription
 														message:nil
 													   delegate:self
-											  cancelButtonTitle:@"Ok"
+											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
 		[alert show];
 	}
+}
+
+-(void) cancelView {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - WebView delegate
@@ -158,6 +162,11 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
 	[self stopSpinning];
 	[self showErrorAlert:error];
+}
+
+#pragma mark - UIAlertViewDelegate 
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	[self cancelView];
 }
 
 @end
