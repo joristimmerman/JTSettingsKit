@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		A923A3EC1A437BF50033896F /* JTSettingsWebViewViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A923A3EA1A437BF50033896F /* JTSettingsWebViewViewController.h */; };
+		A923A3ED1A437BF50033896F /* JTSettingsWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A923A3EB1A437BF50033896F /* JTSettingsWebViewViewController.m */; };
 		A93988C4195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A93988C2195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A93988C5195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A93988C3195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.m */; };
 		A93988C6195ACCF700A0DF03 /* JTSettingsEditing.h in Headers */ = {isa = PBXBuildFile; fileRef = A97674FB1959CA25009CD655 /* JTSettingsEditing.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -71,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A923A3EA1A437BF50033896F /* JTSettingsWebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsWebViewViewController.h; path = Source/JTSettingsWebViewViewController.h; sourceTree = "<group>"; };
+		A923A3EB1A437BF50033896F /* JTSettingsWebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsWebViewViewController.m; path = Source/JTSettingsWebViewViewController.m; sourceTree = "<group>"; };
 		A93988C2195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsCustomEditorBaseViewController.h; path = Source/JTSettingsCustomEditorBaseViewController.h; sourceTree = "<group>"; };
 		A93988C3195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSettingsCustomEditorBaseViewController.m; path = Source/JTSettingsCustomEditorBaseViewController.m; sourceTree = "<group>"; };
 		A93988C7195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSettingsEditorDelegate.h; path = Source/JTSettingsEditorDelegate.h; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 			children = (
 				A9F13DD819597AE60002272B /* JTSettingsChoicesViewController.h */,
 				A9F13DD919597AE60002272B /* JTSettingsChoicesViewController.m */,
+				A923A3EA1A437BF50033896F /* JTSettingsWebViewViewController.h */,
+				A923A3EB1A437BF50033896F /* JTSettingsWebViewViewController.m */,
 			);
 			name = Editors;
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 				A93988C4195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.h in Headers */,
 				A93988C8195ACEAB00A0DF03 /* JTSettingsEditorDelegate.h in Headers */,
 				A9EBE6111959A6D100FF85A7 /* JTSettingsTableViewController.h in Headers */,
+				A923A3EC1A437BF50033896F /* JTSettingsWebViewViewController.h in Headers */,
 				A9EBE6131959B56D00FF85A7 /* JTSettingsGroupSettingDictionary.h in Headers */,
 				A9F13E6819598EB00002272B /* JTSettingsChoicesViewController.h in Headers */,
 				A9F13E6719598EB00002272B /* JTSettingsChoiceCell.h in Headers */,
@@ -374,6 +381,7 @@
 				A93988C5195ACCED00A0DF03 /* JTSettingsCustomEditorBaseViewController.m in Sources */,
 				A9F13DE119597AE60002272B /* JTSettingsGroup.m in Sources */,
 				A9F13DDE19597AE60002272B /* JTSettingsCell.m in Sources */,
+				A923A3ED1A437BF50033896F /* JTSettingsWebViewViewController.m in Sources */,
 				A9398944195AED7C00A0DF03 /* JTSettingsViewController.m in Sources */,
 				A9F13DE519597AE60002272B /* JTSettingsSwitchCell.m in Sources */,
 				A9F13DE219597AE60002272B /* JTSettingsGroupSettingDictionary.m in Sources */,

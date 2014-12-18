@@ -9,6 +9,7 @@
 #import "JTSettingsViewController.h"
 #import "JTSettingsTableViewController.h"
 #import "JTSettingsCustomEditorBaseViewController.h"
+#import "JTSettingsWebViewViewController.h"
 #import "JTSettingsCell.h"
 
 @interface JTSettingsViewController ()<JTSettingsVisualizerDelegate, JTSettingsEditorDelegate> {
@@ -214,12 +215,8 @@
       if(!url) {
         return nil;
       }
-      
-      UIWebView *view = [[UIWebView alloc] init];
-      [view loadRequest:[NSURLRequest requestWithURL:url]];
-      
-      editor = [[JTSettingsCustomEditorBaseViewController alloc] init];
-      editor.view = view;
+		
+      editor = [[JTSettingsWebViewViewController alloc] init];
     } else {
       Class editorClass = [group editorClassForSettingWithKey:key];
 
