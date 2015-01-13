@@ -185,7 +185,8 @@
   JTSettingsCell *cell = (JTSettingsCell *)[tableView cellForRowAtIndexPath:indexPath];
   UIViewController<JTSettingsEditing> *editor =
   [self.delegate editorForSettingWithKey:cell.key inGroupAt:indexPath.section];
-  
+	
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
   [self pushEditorView:editor];
 }
 
