@@ -7,7 +7,7 @@
 //
 
 enum {
-  JTSettingTypeCustom = 0,
+  JTSettingTypeCustomCell = 0,
   JTSettingTypeSwitch = 1,
   JTSettingTypeChoice,
   JTSettingTypeMultiChoice,

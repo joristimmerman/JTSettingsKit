@@ -104,7 +104,7 @@
   self = [self init];
   if (self) {
     self.label = nil;
-    self.type = JTSettingTypeCustom;
+    self.type = JTSettingTypeCustomCell;
     self.userDefaultsKey = nil;
     self.value = view;
     self.enabled = YES;
@@ -161,7 +161,7 @@
   self = [self init];
   if (self) {
     self.userDefaultsKey = nil;
-    self.type = JTSettingTypeCustom;
+    self.type = JTSettingTypeCustomCell;
     self.label = label;
 
     self.value = view;

@@ -159,7 +159,7 @@
 
 - (NSString *)cellIdentifierForCellWithType:(NSUInteger)type {
   switch (type) {
-    case JTSettingTypeCustom:
+    case JTSettingTypeCustomCell:
       return kCellIdentifierCustomCell;
       break;
       

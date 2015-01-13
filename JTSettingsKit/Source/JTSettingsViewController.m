@@ -269,7 +269,7 @@
   if (group) {
     return [group settingTypeForSettingWithKey:key];
   }
-  return JTSettingTypeCustom;
+  return JTSettingTypeCustomCell;
 }
 
 - (id)selectedDataForSettingWithKey:(NSString *)key inGroupAt:(NSUInteger)groupIndex {
