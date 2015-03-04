@@ -14,6 +14,6 @@
 @property(nonatomic) id selectedValue;
 
 @property(nonatomic) NSDictionary *data;
-@property id<JTSettingsEditorDelegate> delegate;
+@property (nonatomic, weak) id<JTSettingsEditorDelegate> delegate;
 
 @end

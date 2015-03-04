@@ -29,7 +29,7 @@
 @protocol JTSettingsVisualizerDelegate;
 @interface JTSettingsTableViewController : UITableViewController<JTSettingsVisualizing>
 
-@property id<JTSettingsVisualizerDelegate> delegate;
+@property (nonatomic, weak) id<JTSettingsVisualizerDelegate> delegate;
 
 - (void)reload;
 

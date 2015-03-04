@@ -36,7 +36,7 @@
 @property (nonatomic) NSString *label;
 
 
-@property id<JTSettingsCellDelegate> delegate;
+@property (nonatomic, weak) id<JTSettingsCellDelegate> delegate;
 
 - (void)dispatchValueChanged;
 

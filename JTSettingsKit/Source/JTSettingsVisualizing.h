@@ -36,7 +36,7 @@
 @end
 
 @protocol JTSettingsVisualizing<NSObject>
-@property id<JTSettingsVisualizerDelegate> delegate;
+@property (nonatomic, weak) id<JTSettingsVisualizerDelegate> delegate;
 
 - (void)reload;
 

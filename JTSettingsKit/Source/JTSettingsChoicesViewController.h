@@ -28,7 +28,7 @@
 
 @interface JTSettingsChoicesViewController : UITableViewController<JTSettingsEditing>
 
-@property id<JTSettingsEditorDelegate> delegate;
+@property (nonatomic, weak) id<JTSettingsEditorDelegate> delegate;
 
 @property(nonatomic) JTSettingsGroup *settingsGroup;
 @property(nonatomic) NSString *settingsKey;
